@@ -9,3 +9,4 @@ export const FIRM_NAME   = 'Civitas Law';
 export const FIRM_PHONE  = '+01 23456789';
 export const FIRM_EMAIL  = 'contact@example.com';
 export const FIRM_ADDRESS = '123 Legal Ave, City, State 00000';
+// okay
