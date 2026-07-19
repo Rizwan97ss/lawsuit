@@ -3,6 +3,7 @@ import MainLayout from "../../layouts/MainLayout.astro";
 import Header from "../../components/layout/Header.astro";
 import Footer from "../../components/layout/Footer.astro";
 import PageHero from "../../components/common/PageHero.astro";
+import { X, ChevronLeft, ChevronRight } from "lucide-astro";
 import img1700934 from "../../assets/1700934.jpg";
 import img632090 from "../../assets/632090.jpg";
 import img1700922 from "../../assets/1700922.jpg";
@@ -67,8 +68,10 @@ const images = [
 
   <!-- ── Lightbox ───────────────────────────────────── -->
   <dialog id="lightbox" class="lightbox" aria-modal="true" aria-label="Image lightbox">
-    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close lightbox">&times;</button>
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close lightbox"><X size={22} strokeWidth={2.5} /></button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" type="button" aria-label="Previous image"><ChevronLeft size={28} strokeWidth={2.5} /></button>
     <img id="lightboxImg" src="" alt="" />
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" type="button" aria-label="Next image"><ChevronRight size={28} strokeWidth={2.5} /></button>
   </dialog>
 
   <Footer />
@@ -79,37 +82,49 @@ const images = [
   const lightbox = document.getElementById("lightbox") as HTMLDialogElement | null;
   const lightboxImg = document.getElementById("lightboxImg") as HTMLImageElement | null;
   const lightboxClose = document.getElementById("lightboxClose");
+  const lightboxPrev = document.getElementById("lightboxPrev");
+  const lightboxNext = document.getElementById("lightboxNext");
 
-  function openLightbox(src: string, alt: string) {
-    if (!lightbox || !lightboxImg) return;
-    lightboxImg.src = src;
-    lightboxImg.alt = alt;
+  const gallery = Array.from(items).map((el) => ({
+    src: el.dataset.src ?? "",
+    alt: el.dataset.alt ?? "",
+  }));
+  let currentIdx = 0;
+
+  function showImage(idx: number) {
+    if (!lightboxImg) return;
+    currentIdx = (idx + gallery.length) % gallery.length;
+    lightboxImg.src = gallery[currentIdx].src;
+    lightboxImg.alt = gallery[currentIdx].alt;
+  }
+
+  function openLightbox(idx: number) {
+    if (!lightbox) return;
+    showImage(idx);
     lightbox.showModal();
   }
 
   function closeLightbox() {
     lightbox?.close();
-    if (lightboxImg) {
-      lightboxImg.src = "";
-      lightboxImg.alt = "";
-    }
+    if (lightboxImg) { lightboxImg.src = ""; lightboxImg.alt = ""; }
   }
 
-  items.forEach((item) => {
-    item.addEventListener("click", () => {
-      const src = item.dataset.src ?? "";
-      const alt = item.dataset.alt ?? "";
-      openLightbox(src, alt);
-    });
+  items.forEach((item, i) => {
+    item.addEventListener("click", () => openLightbox(i));
   });
 
   lightboxClose?.addEventListener("click", closeLightbox);
+  lightboxPrev?.addEventListener("click", (e) => { e.stopPropagation(); showImage(currentIdx - 1); });
+  lightboxNext?.addEventListener("click", (e) => { e.stopPropagation(); showImage(currentIdx + 1); });
 
   lightbox?.addEventListener("click", (e) => {
     if (e.target === lightbox) closeLightbox();
   });
 
   document.addEventListener("keydown", (e) => {
+    if (!lightbox?.open) return;
     if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") showImage(currentIdx - 1);
+    if (e.key === "ArrowRight") showImage(currentIdx + 1);
   });
 </script>

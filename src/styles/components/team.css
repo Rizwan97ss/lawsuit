@@ -9,7 +9,19 @@
   text-align: center;
   margin-bottom: 3rem;
 }
+.team-section-kicker{
+   gap: 0.5rem;
+  /* color: var(--color-primary); */
+  /* font-weight: var(--fw-medium); */
+  letter-spacing: 0.08em;
+  /* font-size: var(--fs-md); */
+  font-family: Cabin, Helvetica, Arial, Lucida, sans-serif;
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-md);
+  line-height: var(--lh-heading);
+  color: var(--gcid-primary-color) !important;
 
+}
 .team-head h2 {
   margin: 0.5rem 0 0;
   font-family: var(--font-heading);

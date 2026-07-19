@@ -76,6 +76,12 @@
   border-radius: 9px;
   background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.3);
   border: 1px solid rgba(255, 198, 74, 0.62);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.atty-stat:hover {
+  border-color: var(--gcid-primary-color, var(--color-primary));
+  transform: translateY(-10px);
 }
 
 .atty-stat__icon {
@@ -415,7 +421,7 @@
   border-radius: 7px;
   background: var(--gcid-primary-color, #ffc64a);
   color: var(--color-dark);
-  outline: 6px solid var(--color-cream-soft);
+  outline: 6px solid hsl(from var(--color-primary) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1);
 }
 
 .atty-achv-card h4 {

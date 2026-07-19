@@ -105,21 +105,53 @@
 
   .lightbox-close {
     position: fixed;
-    top: 20px;
-    right: 24px;
-    background: none;
-    border: none;
+    top: 16px;
+    right: 20px;
+    background: rgba(0,0,0,0.45);
+    border: 2px solid rgba(255,255,255,0.25);
+    border-radius: 50%;
     color: var(--color-white);
-    font-size: var(--fs-44);
+    font-size: 1.6rem;
     line-height: 1;
     cursor: pointer;
-    padding: 0;
-    transition: color 0.2s;
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-items: center;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
     z-index: 9999;
   }
 
   .lightbox-close:hover {
-    color: var(--gcid-primary-color, var(--color-primary));
+    background: var(--gcid-primary-color, var(--color-primary));
+    border-color: var(--gcid-primary-color, var(--color-primary));
+    color: var(--color-black);
+  }
+
+  .lightbox-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.45);
+    border: 2px solid rgba(255,255,255,0.25);
+    border-radius: 50%;
+    color: var(--color-white);
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    z-index: 9999;
+  }
+
+  .lightbox-prev { left: 20px; }
+  .lightbox-next { right: 20px; }
+
+  .lightbox-nav:hover {
+    background: var(--gcid-primary-color, var(--color-primary));
+    border-color: var(--gcid-primary-color, var(--color-primary));
+    color: var(--color-black);
   }
 
   /* ── Responsive ──────────────────────────────────── */

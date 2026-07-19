@@ -179,7 +179,7 @@
 
 .sub-menu {
   position: absolute;
-  top: calc(100% - 1px);
+  top: calc(100% - 2px);
   left: 0;
 
   min-width: 220px;
@@ -784,7 +784,7 @@
   height: 73px;
   display: grid;
   place-items: center;
-  border: 8px solid var(--color-cream-soft);
+  border: 8px solid hsl(from var(--color-primary) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1);
   border-radius: 50%;
   background: var(--color-primary);
   color: var(--color-primary-dark);
@@ -2671,7 +2671,7 @@
 .faq-item {
   overflow: hidden;
   border-radius: var(--radius-sm);
-  background: var(--color-cream-soft);
+  background: hsl(from var(--color-primary) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1);
 }
 
 .faq-question {
@@ -2683,7 +2683,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  background: var(--color-cream-soft);
+  background: hsl(from var(--color-primary) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1);
   color: var(--color-text);
   cursor: pointer;
   text-align: left;
@@ -2915,7 +2915,7 @@
   min-height: 545px;
   padding: 13px 13px 24px;
   border-radius: 10px;
-  background: var(--color-cream-soft);
+  background: hsl(from var(--color-primary) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1);
   transition:
     transform 0.35s ease,
     box-shadow 0.35s ease;
@@ -3255,11 +3255,10 @@
 .hcta-form {
   min-width: 0;
   display: grid;
-  gap: 22px;
-  padding: 42px;
+  gap: 15px;
+  padding: 30px;
   border-radius: var(--radius-sm);
-  background: var(--color-cream-soft);
-  opacity: 0;
+background-color: hsl(from var(--color-primary) calc(h + 0) calc(s + 0) calc(l + 0) / 0.15);  opacity: 0;
   transform: translateX(70px);
   transition:
     opacity 0.8s ease 0.12s,
@@ -3275,7 +3274,7 @@
 .hcta-row {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
+  gap: 15px;
 }
 
 .hcta-form input,
@@ -3284,7 +3283,7 @@
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
-  border: 1px solid color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 60%, transparent);
+  border: 1px solid var(--color-primary);
   border-radius: 6px;
   background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.05);
   color: var(--color-text);
@@ -3425,7 +3424,7 @@
   }
 
   .hcta-form {
-    gap: 16px;
+    gap: 0px;
     padding: 30px;
   }
 

@@ -153,7 +153,7 @@
   margin: 0 0 20px;
      font-size: var(--fs-h2);
     font-weight: var(--fw-semibold);
-        font-family: var(--et_global_body_font);
+        font-family: var(--et_global_heading_font);
 line-height: 1.2em;
     color: var(--gcid-heading-color) !important;
 }

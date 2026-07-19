@@ -2,6 +2,7 @@
 // src/layouts/MainLayout.astro
 import "../styles/global.css";
 import CookieConsent from "../components/common/CookieConsent.astro";
+import ScrollTop from "../components/common/ScrollTop.astro";
 import {
   SITE_TITLE,
   SITE_DESCRIPTION,
@@ -134,6 +135,7 @@ const jsonLd = isHome
   <body>
     <slot />
     <CookieConsent />
+    <ScrollTop />
 
     <script>
       import { setupScrollReveal } from '../scripts/scrollReveal';

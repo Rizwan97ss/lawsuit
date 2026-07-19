@@ -79,8 +79,8 @@ const testimonials = [
 <section class="testimonial-section">
   <div class="container">
     <div class="testimonial-head">
-      <div>
-        <p class="testimonial-kicker">
+      <div style={!isHomePage ? "text-align: center; width: 100%;" : undefined}>
+        <p class="testimonial-kicker" style={!isHomePage ? "justify-content: center;" : undefined}>
           <Scale size={16} className="kicker-icon" /> Testimonials
         </p>
         <h2>What Our Client's Say</h2>
