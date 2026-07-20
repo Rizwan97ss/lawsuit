@@ -7,11 +7,12 @@ const bg = await getImage({ src: rawBg });
 const {
   title,
   breadcrumb = "Home",
+  class: className = "",
 } = Astro.props;
 ---
 
 <section
-  class="page-hero"
+  class={`page-hero ${className}`}
   style={`background-image: linear-gradient(90deg, var(--color-black-a70) 0%, var(--color-black-a70) 100%), url(${bg.src});`}
 >
   <div class="page-hero__mask" aria-hidden="true"></div>

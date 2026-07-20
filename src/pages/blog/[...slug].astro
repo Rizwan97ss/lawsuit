@@ -27,10 +27,17 @@ const categories = [...new Set(allPosts.map((p) => p.data.category))];
 
 // used in template for category href
 const toSlug = (str: string) =>
-  str.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+  str
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9-]/g, "");
 
 const fmt = (d: Date) =>
-  d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  d.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
 ---
 
 <MainLayout
@@ -41,93 +48,105 @@ const fmt = (d: Date) =>
   pubDate={post.data.pubDate.toISOString()}
 >
   <Header />
-  <PageHero title="Blog Details" />
+  <PageHero title={post.data.title} class="page-hero--centered" />
 
   <section class="bd-section">
     <div class="container">
       <div class="bd-layout">
-
         <!-- ── Main article ────────────────────────────────── -->
         <main class="bd-main">
-
           <!-- Hero image -->
           <div class="bd-img-wrap">
             <img src={post.data.image} alt={post.data.title} />
           </div>
+          <div class="main-sec">
+            <!-- Meta row -->
+            <div class="bd-meta">
+              <span class="bd-meta__item">
+                <CalendarDays size={14} strokeWidth={2.5} />
+                {fmt(post.data.pubDate)}
+              </span>
+              <span class="bd-meta__item">
+                <User size={14} strokeWidth={2.5} />
+                {post.data.author}
+              </span>
+              <a
+                href={`/blog/category/${toSlug(post.data.category)}`}
+                class="bd-meta__item bd-meta__item--link"
+              >
+                <Tag size={14} strokeWidth={2.5} />
+                {post.data.category}
+              </a>
+            </div>
 
-          <!-- Meta row -->
-          <div class="bd-meta">
-            <span class="bd-meta__item">
-              <CalendarDays size={14} strokeWidth={2.5} />
-              {fmt(post.data.pubDate)}
-            </span>
-            <span class="bd-meta__item">
-              <User size={14} strokeWidth={2.5} />
-              {post.data.author}
-            </span>
-            <a href={`/blog/category/${toSlug(post.data.category)}`} class="bd-meta__item bd-meta__item--link">
-              <Tag size={14} strokeWidth={2.5} />
-              {post.data.category}
-            </a>
+            <!-- Title -->
+            <h1 class="bd-title">{post.data.title}</h1>
+
+            <!-- Markdown body -->
+            <div class="bd-body">
+              <Content />
+            </div>
           </div>
-
-          <!-- Title -->
-          <h1 class="bd-title">{post.data.title}</h1>
-
-          <!-- Markdown body -->
-          <div class="bd-body">
-            <Content />
-          </div>
-
         </main>
 
         <!-- ── Sidebar ─────────────────────────────────────── -->
         <aside class="bd-sidebar">
           <div class="bd-sidebar-inner">
-
             <!-- Browse Categories -->
             <div class="sidebar-widget">
               <h3 class="sidebar-widget__title">Browse Categories</h3>
               <ul class="sidebar-cat-list">
-                {categories.map((cat) => (
-                  <li class={cat === post.data.category ? "active" : ""}>
-                    <a href={`/blog/category/${toSlug(cat)}`}>
-                      <MoveRight size={14} />
-                      {cat}
-                    </a>
-                  </li>
-                ))}
+                {
+                  categories.map((cat) => (
+                    <li class={cat === post.data.category ? "active" : ""}>
+                      <a href={`/blog/category/${toSlug(cat)}`}>
+                        <MoveRight size={14} />
+                        {cat}
+                      </a>
+                    </li>
+                  ))
+                }
               </ul>
             </div>
 
             <!-- Recent Posts -->
-            {recentPosts.length > 0 && (
-              <div class="sidebar-widget">
-                <h3 class="sidebar-widget__title">Recent Post</h3>
-                <ul class="sidebar-recent-list">
-                  {recentPosts.map((rp) => (
-                    <li>
-                      <a href={`/blog/${rp.id}`} class="sidebar-recent__img-wrap">
-                        <img src={rp.data.image} alt={rp.data.title} loading="lazy" />
-                      </a>
-                      <div class="sidebar-recent__info">
-                        <a href={`/blog/${rp.id}`} class="sidebar-recent__title">
-                          {rp.data.title}
+            {
+              recentPosts.length > 0 && (
+                <div class="sidebar-widget">
+                  <h3 class="sidebar-widget__title">Recent Post</h3>
+                  <ul class="sidebar-recent-list">
+                    {recentPosts.map((rp) => (
+                      <li>
+                        <a
+                          href={`/blog/${rp.id}`}
+                          class="sidebar-recent__img-wrap"
+                        >
+                          <img
+                            src={rp.data.image}
+                            alt={rp.data.title}
+                            loading="lazy"
+                          />
                         </a>
-                        <span class="sidebar-recent__date">
-                          <CalendarDays size={13} strokeWidth={2} />
-                          {fmt(rp.data.pubDate)}
-                        </span>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
+                        <div class="sidebar-recent__info">
+                          <a
+                            href={`/blog/${rp.id}`}
+                            class="sidebar-recent__title"
+                          >
+                            {rp.data.title}
+                          </a>
+                          <span class="sidebar-recent__date">
+                            <CalendarDays size={13} strokeWidth={2} />
+                            {fmt(rp.data.pubDate)}
+                          </span>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            }
           </div><!-- /bd-sidebar-inner -->
         </aside>
-
       </div>
     </div>
   </section>

@@ -6,8 +6,7 @@
 
 /* Widget card */
 .sidebar-widget {
-  background: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1) !important
-;
+  background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.15);
   border: 1px solid rgba(255, 196, 66, 0.15);
   border-radius: 16px;
   overflow: hidden;
@@ -28,7 +27,7 @@
 /* ── Category list ─────────────────────────────────── */
 .sidebar-cat-list {
   margin: 0;
-  padding: 10px 20px;
+  padding: 20px 20px;
   list-style: none;
 }
 
@@ -42,7 +41,7 @@
 }
 
 .sidebar-cat-list li a {
-  padding: 18px 0;
+  padding: 10px 0px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -77,6 +76,8 @@
   margin: 0;
   padding: 20px;
   display: flex;
+    background: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.15);
+
   flex-direction: column;
   gap: 22px;
   list-style: none;
@@ -151,9 +152,29 @@
   color: var(--color-primary);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 567px) {
   .sidebar-recent__img-wrap {
     width: 82px;
     height: 68px;
+  }
+  .sidebar-cat-list{
+    background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.15);
+  }
+  .sidebar-widget__title{
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .sidebar-cat-list li a{
+        font-weight: 400;
+    font-size: 15px;
+        color: #666;
+
+  }
+
+  .sidebar-cat-list li a svg{
+    color: var(--gcid-primary-color);
+    font-weight: var(--fw-bold) !important;
+    font-size: var(--fs-h4) !important;
   }
 }
