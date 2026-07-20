@@ -63,3 +63,29 @@
     white-space: nowrap;
     margin-top: 0.5rem;
   }
+
+@media (max-width:991px){
+  .cta-banner{
+    padding: 80px 20px;
+  }
+  .cta-banner h2{
+    font-size: 32px;
+  }
+   .cta-banner p{
+    font-size: 16px;
+    color: #ffffff;
+  }
+}
+@media (max-width:576px){
+  .cta-banner{
+    padding: 40px 20px;
+  }
+
+  .cta-banner h2{
+    font-size: 26px;
+  }
+  .cta-banner p{
+    font-size: 15px;
+    color: #ffffff;
+  }
+}

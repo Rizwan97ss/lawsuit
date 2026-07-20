@@ -75,6 +75,7 @@
   /* ── Font Size Scale ──────────────────────────────────── */
   --fs-xs:   13px;             /* micro text, metadata */
   --fs-sm:   14px;             /* metadata, badges */
+  --fs-ph:   15px;             /* Placeholder */
   --fs-base: 16px;             /* body copy */
   --fs-md:   17px;             /* kickers, nav links */
   --fs-h4:   20px;             /* card titles */

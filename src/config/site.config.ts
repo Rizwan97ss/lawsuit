@@ -66,13 +66,13 @@ export const siteConfig = {
   // ── Team Carousel ─────────────────────────────────────────────
   team: {
     /** ms — interval between auto-advances. Set 0 to disable autoplay. */
-    autoplayInterval: 1000,
+    autoplayInterval: 0,
     /** ms — duration of the slide transition animation */
     animationDuration: 420,
     /** px — gap between cards */
     cardGap: 20,
     visibleCards: {
-      mobile: 1,
+      mobile: 2,
       tablet: 2,
       desktop: 4,
     },

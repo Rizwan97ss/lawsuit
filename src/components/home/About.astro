@@ -3,16 +3,13 @@ import { Scale, MoveRight } from "lucide-react";
 import imgAbout from "../../assets/793319.jpg";
 const isHomePage = Astro.url.pathname === "/";
 ---
+
 <section class="about-section">
   <div class="container">
     <div class="about-card">
       <div class="about-image-wrap" data-reveal="left">
         <div class="shine-image about-image-shine">
-          <img
-            src={imgAbout.src}
-            alt="Court room"
-            class="about-image"
-          />
+          <img src={imgAbout.src} alt="Court room" class="about-image" />
         </div>
 
         <div class="experience-badge">
@@ -21,20 +18,20 @@ const isHomePage = Astro.url.pathname === "/";
           <span>Experience</span>
         </div>
       </div>
-
       <div class="about-content" data-reveal="right">
-        <p class="about-kicker"><Scale size={16} className="kicker-icon" /> About Civitas</p>
+        <p class="about-kicker">
+          <Scale size={16} className="kicker-icon" /> About Civitas
+        </p>
 
         <h2>
-          Committed to Excellence in
-          <br />
-          Advocacy
+          Committed to Excellence in <br /> Advocacy
         </h2>
 
         <p class="about-text">
-          Founded on the principles of integrity and relentless pursuit of justice,
-          our firm provides sophisticated legal counsel tailored to the unique
-          needs of every client. We don’t just practice law; we solve problems.
+          Founded on the principles of integrity and relentless pursuit of
+          justice, our firm provides sophisticated legal counsel tailored to the
+          unique needs of every client. We don’t just practice law; we solve
+          problems.
         </p>
 
         <ul class="about-list">
@@ -44,13 +41,13 @@ const isHomePage = Astro.url.pathname === "/";
           <li>Real Estate Law</li>
         </ul>
 
-         <a
-  href={isHomePage ? "/about" : "/contact/contact_1"}
-  class="practice-view-btn btn-fill-hover"
->
-  {isHomePage ? "Read More" : "Contact Us"}
-  <MoveRight size={16} />
-</a>
+        <a
+          href={isHomePage ? "/about" : "/contact/contact_1"}
+          class="practice-view-btn btn-fill-hover"
+        >
+          {isHomePage ? "Read More" : "Contact Us"}
+          <MoveRight size={16} />
+        </a>
       </div>
     </div>
   </div>

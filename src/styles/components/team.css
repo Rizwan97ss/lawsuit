@@ -202,13 +202,45 @@
     flex: 0 0 calc(50% - 10px);
   }
 }
+@media (max-width: 991px){
+  .team-section{
+    padding: 40px 0px;
+  }
 
+  .team-section-kicker{
+    margin-top: 0px;
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+
+  .team-section .team-head h2{
+    font-size: 30px;
+    margin-bottom: 30px;
+  }
+}
 @media (max-width: 640px) {
+  .team-head{
+    margin-bottom: 0px;
+  }
   .team-card {
-    flex: 0 0 calc(100%);
+    flex: 0 0 calc(50% - 10px);
   }
 
   .team-card__inner {
     height: 260px;
+  }
+   .team-section{
+    padding: 25px 0px;
+  }
+
+  .team-section-kicker{
+    margin-top: 0px;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  .team-section .team-head h2{
+    font-size: 20px;
+    margin-bottom: 20px;
   }
 }

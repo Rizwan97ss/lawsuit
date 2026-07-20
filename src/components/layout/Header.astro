@@ -1,5 +1,6 @@
 ---
 import { Menu, X, ChevronDown, Phone, Mail, Facebook, Instagram, Linkedin, MoveRight } from 'lucide-astro';
+import logoSrc from '../../assets/Normal-Logo.png';
 
 
 const navLinks = [
@@ -79,7 +80,9 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     <div class="header-container navbar__inner">
 
       <!-- Logo -->
-      <a href="/" class="brand-logo" aria-label="Civitas — go to homepage">CIVITAS</a>
+      <a href="/" class="brand-logo" aria-label="Civitas — go to homepage">
+        <img src={logoSrc.src} alt="Civitas" class="brand-logo__img" />
+      </a>
 
       <!-- Desktop nav links -->
       <ul class="nav-menu" id="navMenu" role="menubar">
@@ -152,8 +155,8 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   const header = document.getElementById('site-header') as HTMLElement       | null;
   const topbar = document.querySelector<HTMLElement>('.topbar');
 
-  /* Measure real navbar height once and store as CSS var — no rounding mismatch */
-  const navH = navbar?.getBoundingClientRect().height ?? 72;
+  /* Measure real navbar height once and store as CSS var — ceil prevents sub-pixel gaps */
+  const navH = Math.ceil(navbar?.getBoundingClientRect().height ?? 72);
   document.documentElement.style.setProperty('--navbar-h', navH + 'px');
 
   /* ── Open / close ──────────────────────────────────────── */
@@ -189,7 +192,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
   /* Close when resized back to desktop */
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 1024) closeMenu();
+    if (window.innerWidth > 768) closeMenu();
   }, { passive: true });
 
   /* Escape key */
@@ -200,7 +203,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   /* ── Accordion sub-menus (mobile only) ─────────────────── */
   menu?.querySelectorAll('.has-dropdown > a').forEach((link) => {
     link.addEventListener('click', (e) => {
-      if (window.innerWidth > 1024) return;          // desktop uses CSS :hover
+      if (window.innerWidth > 768) return;           // desktop uses CSS :hover
       e.preventDefault();
 
       const parent = (link as HTMLElement).parentElement;
@@ -216,7 +219,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   });
 
   /* ── Sticky navbar ─────────────────────────────────────── */
-  const stickyAt = topbar?.offsetHeight ?? 40;
+  const stickyAt = Math.max(topbar?.offsetHeight ?? 40, 1);
 
   window.addEventListener('scroll', () => {
     const sticky = window.scrollY >= stickyAt;

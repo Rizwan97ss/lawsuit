@@ -33,44 +33,43 @@ const faqs = [
 <section class="faq-section">
   <div class="container faq-layout">
     <div class="faq-left" data-reveal="left">
-      <p class="faq-kicker"><Scale size={16} className="kicker-icon" /> FAQ's</p>
+      <p class="faq-kicker">
+        <Scale size={16} className="kicker-icon" /> FAQ's
+      </p>
 
       <h2>Frequently Asked Questions</h2>
 
-       <a href="/faq/faq" class="practice-view-btn btn-fill-hover">
-  Read More<MoveRight size={16} />
-</a>
-    <div class="faq-image-wrapper shine-image">
-  <img
-    class="faq-image"
-    src={imgFaq.src}
-    alt="Lady justice statue"
-  />
-</div>
-    
+      <a href="/faq/faq" class="practice-view-btn btn-fill-hover">
+        Read More<MoveRight size={16} />
+      </a>
+      <div class="faq-image-wrapper shine-image">
+        <img class="faq-image" src={imgFaq.src} alt="Lady justice statue" />
+      </div>
     </div>
 
     <div class="faq-right" data-reveal="right">
-      {faqs.map((faq, index) => (
-        <div class={`faq-item ${index === 0 ? "is-open" : ""}`}>
-          <button class="faq-question" type="button">
-            <span>{faq.question}</span>
-            <strong>{index === 0 ? "−" : "+"}</strong>
-          </button>
+      {
+        faqs.map((faq, index) => (
+          <div class={`faq-item ${index === 0 ? "is-open" : ""}`}>
+            <button class="faq-question" type="button">
+              <span>{faq.question}</span>
+              <strong>{index === 0 ? "−" : "+"}</strong>
+            </button>
 
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              <p>{faq.answer}</p>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>{faq.answer}</p>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
 </section>
 
 <script>
-  import { createAccordion } from '../../scripts/accordion';
-  import { siteConfig } from '../../config/site.config';
+  import { createAccordion } from "../../scripts/accordion";
+  import { siteConfig } from "../../config/site.config";
   createAccordion({ keepOneOpen: siteConfig.faq.keepOneOpen });
 </script>

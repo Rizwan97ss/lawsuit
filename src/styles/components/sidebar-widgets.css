@@ -6,7 +6,8 @@
 
 /* Widget card */
 .sidebar-widget {
-  background: var(--color-cream-warm);
+  background: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1) !important
+;
   border: 1px solid rgba(255, 196, 66, 0.15);
   border-radius: 16px;
   overflow: hidden;
@@ -15,7 +16,7 @@
 
 .sidebar-widget__title {
   margin: 0;
-  padding: 20px 24px;
+  padding: 10px 20px;
   background: var(--gcid-primary-color, var(--color-primary));
   color: var(--gcid-heading-color, var(--color-primary-dark));
   font-family: "Bitter", serif;
@@ -27,7 +28,7 @@
 /* ── Category list ─────────────────────────────────── */
 .sidebar-cat-list {
   margin: 0;
-  padding: 12px 20px 16px;
+  padding: 10px 20px;
   list-style: none;
 }
 
@@ -53,6 +54,10 @@
   transition:
     color 0.3s ease,
     padding-left 0.3s ease;
+}
+
+.sidebar-cat-list li a svg {
+  color: var(--gcid-primary-color);
 }
 
 .sidebar-cat-list li:hover a {
@@ -134,15 +139,16 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  color: var(--gcid-primary-color, var(--color-primary));
   font-family: "Cabin", sans-serif;
   font-size: var(--fs-xs);
   font-weight: var(--fw-semibold);
   line-height: 1.2;
+    color: var(--gcid-body-color) !important;
 }
 
 .sidebar-recent__date svg {
   flex-shrink: 0;
+  color: var(--color-primary);
 }
 
 @media (max-width: 480px) {

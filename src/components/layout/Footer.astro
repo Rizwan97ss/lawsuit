@@ -1,5 +1,6 @@
 ---
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Send } from "lucide-astro";
+import whiteLogo from "../../assets/white-logo.png";
 ---
 
 <footer class="site-footer">
@@ -23,7 +24,9 @@ import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Send } from "lucide
 
     <div class="footer-grid">
       <div class="footer-about-col">
-        <a href="/" class="footer-logo">BRAND LOGO</a>
+        <a href="/" class="footer-logo">
+          <img src={whiteLogo.src} alt="Civitas Logo" />
+        </a>
 
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.

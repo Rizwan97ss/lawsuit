@@ -1,5 +1,12 @@
 ---
-import { ChevronRight, ChevronLeft, Scale, User, Tag, MoveRight } from 'lucide-react';
+import {
+  ChevronRight,
+  ChevronLeft,
+  Scale,
+  User,
+  Tag,
+  MoveRight,
+} from "lucide-react";
 import img859219 from "../../assets/859219.jpg";
 import img719590 from "../../assets/719590.jpg";
 import img801066 from "../../assets/801066.jpg";
@@ -52,61 +59,72 @@ const posts = [
   <div class="container">
     <div class="blog-head">
       <div>
-        <p class="blog-kicker"><Scale size={16} className="kicker-icon" /> News & Blog</p>
+        <p class="blog-kicker">
+          <Scale size={16} className="kicker-icon" /> News & Blog
+        </p>
         <h2>Latest News & Update</h2>
       </div>
- <a href="/blog" class="practice-view-btn btn-fill-hover">
-  View More <MoveRight size={16} />
-</a>
-      
+      <a href="/blog" class="practice-view-btn btn-fill-hover">
+        View More <MoveRight size={16} />
+      </a>
     </div>
 
     <div class="blog-slider">
       <div class="blog-track">
-        {posts.map((post) => (
-          <article class="blog-slide">
-            <div class="blog-card">
-              <div class="blog-image shine-image">
-                <img src={post.image} alt={post.title} />
-                <span class="blog-badge">{post.date}</span>
-              </div>
-
-              <div class="blog-body">
-                <div class="blog-meta">
-                  <span><User size={13} /> By {post.author}</span>
-                  <span><Tag size={13} /> {post.category}</span>
+        {
+          posts.map((post) => (
+            <article class="blog-slide">
+              <div class="blog-card">
+                <div class="blog-image shine-image">
+                  <img src={post.image} alt={post.title} />
+                  <span class="blog-badge">{post.date}</span>
                 </div>
 
-                <h3>{post.title}</h3>
+                <div class="blog-body">
+                  <div class="blog-meta">
+                    <span>
+                      <User size={13} /> By {post.author}
+                    </span>
+                    <span>
+                      <Tag size={13} /> {post.category}
+                    </span>
+                  </div>
 
-                <a href={`/blog/${post.slug}`} class="practice-view-btn btn-fill-hover">
-                  Read More <MoveRight size={16} />
-                </a>
+                  <h3>{post.title}</h3>
+
+                  <a
+                    href={`/blog/${post.slug}`}
+                    class="practice-view-btn btn-fill-hover"
+                  >
+                    Read More <MoveRight size={16} />
+                  </a>
+                </div>
               </div>
-
-            </div>
-          </article>
-        ))}
+            </article>
+          ))
+        }
       </div>
     </div>
 
     <div class="blog-arrows">
-      <button class="blog-arrow blog-prev" type="button"><ChevronLeft /></button>
-      <button class="blog-arrow blog-next" type="button"><ChevronRight /></button>
+      <button class="blog-arrow blog-prev" type="button"><ChevronLeft /></button
+      >
+      <button class="blog-arrow blog-next" type="button"
+        ><ChevronRight /></button
+      >
     </div>
   </div>
 </section>
 
 <script>
-  import { createSlider } from '../../scripts/slider';
-  import { siteConfig } from '../../config/site.config';
+  import { createSlider } from "../../scripts/slider";
+  import { siteConfig } from "../../config/site.config";
   createSlider({
-    trackSelector: '.blog-track',
-    slideSelector: '.blog-slide',
-    prevSelector:  '.blog-prev',
-    nextSelector:  '.blog-next',
-    visibleCards:  siteConfig.blog.visibleCards,
-    breakpoints:   siteConfig.blog.breakpoints,
+    trackSelector: ".blog-track",
+    slideSelector: ".blog-slide",
+    prevSelector: ".blog-prev",
+    nextSelector: ".blog-next",
+    visibleCards: siteConfig.blog.visibleCards,
+    breakpoints: siteConfig.blog.breakpoints,
   });
-
 </script>

@@ -32,6 +32,12 @@
 @import "./pages/blog-page-details.css";
 
 /* ── Global reset foundations ───────────────────────── */
+html {
+  overflow-x: hidden;
+  background: var(--color-dark);
+  overscroll-behavior: none;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -64,6 +70,7 @@ body {
   margin: 0;
   /* Prevent any element from causing horizontal scroll */
   overflow-x: clip;
+  overscroll-behavior: none;
 }
 
 h1, h2, h3, h4, h5 {
