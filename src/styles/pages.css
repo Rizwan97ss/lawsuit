@@ -107,14 +107,17 @@
   flex-direction: column;
   gap: 30px;
 }
-.practice-details__main .faqqs{
-      background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1);
-      padding: 20px;
-      border-radius: 10px;
+
+.practice-details__main .faqqs {
+  background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1);
+  padding: 20px;
+  border-radius: 10px;
 }
-.practice-details__main h2{
+
+.practice-details__main h2 {
   font-size: 38px;
 }
+
 .shine-image {
   position: relative;
   overflow: hidden;
@@ -153,7 +156,7 @@
 .sidebar-card {
   padding: 20px;
   border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 10%, white);
+  background: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1);
 }
 
 .content-box h2 {
@@ -175,7 +178,7 @@
 }
 
 .case-row {
-      background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1);
+  background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1);
   padding: 20px;
   border-radius: 10px;
   display: grid;
@@ -209,7 +212,7 @@
   margin-bottom: 15px;
   font-size: var(--fs-base);
   line-height: 1.6;
-    color: var(--color-text);
+  color: var(--color-text);
   font-weight: 500;
 }
 
@@ -278,18 +281,19 @@
   font-family: var(--et_global_body_font);
   margin-bottom: 20px;
   padding: 10px 20px;
-  border-radius: 5px;
-  background: color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 30%, white);
+  border-radius: 5px;  
+  background: color-mix(in srgb, var(--gcid-primary-color, hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.3)) 30%, white);
   color: var(--color-pure-black);
   text-decoration: none;
   transition: 0.3s;
 }
 
 .service-list a::after {
-  content: "→";
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E");
   position: absolute;
   right: 20px;
   transition: 0.3s;
+  line-height: 0;
 }
 
 .service-list a:hover {
@@ -402,7 +406,7 @@
   }
 
   .practice-details__hero-image img {
-    height: 250px;
+    height: 350px;
   }
 
   .case-row__image img {
@@ -410,7 +414,13 @@
     object-fit: cover;
   }
 
-  .content-box h2 {
+  .practice-details__main .cs-section {
+    background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1);
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .content-box h2,.practice-details__main .cs-section h2 {
     font-size: var(--fs-30);
     font-weight: var(--fw-semibold);
     font-family: var(--et_global_heading_font);
@@ -418,13 +428,38 @@
     color: var(--gcid-heading-color) !important;
 
   }
+  .cs-bullet-list{
+    color: var(--gcid-body-color) !important;
+    font-size: 16px;
+    line-height: 1.6em;
+    font-weight: var(--fw-medium);
+  }
+  .practice-details__main .cs-section p{
+    color: var(--color-primary-dark) !important;
+    font-size: 16px;
+    line-height: 1.6em;
+    font-weight: var(--fw-medium);
+  }
+  .practice-details__main .cs-achieve-grid .cs-achieve-blurb h4{
+    font-weight: 600;
+    color: var(--gcid-heading-color) !important;
+    font-size: 18px;
+    line-height: 1.2em;
+  }
+    .practice-details__main .cs-achieve-grid .cs-achieve-blurb  p{
+        color: var(--gcid-body-color);
+    font-size: 16px;
+    line-height: 1.6em;
+    font-weight: var(--fw-semibold);
+  }
   .case-row__content h3,
-.sidebar-card h3 {
-        font-weight: 600;
+  .sidebar-card h3 {
+    font-weight: 600;
     color: var(--gcid-heading-color) !important;
     line-height: 1.2em;
     font-size: 22px;
   }
+
   .faq-list-main summary {
     padding: 15px 30px 15px 15px;
     font-size: var(--fs-base);
@@ -549,7 +584,7 @@
 .sidebar-card {
   padding: 20px;
   border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 10%, white);
+  background: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1);
 }
 
 .sidebar-card h3 {
@@ -581,10 +616,11 @@
 }
 
 .category-list a::after {
-  content: "→";
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E");
   position: absolute;
   right: 20px;
   transition: 0.3s;
+  line-height: 0;
 }
 
 .category-list a:hover {
@@ -791,11 +827,13 @@
   }
 
 }
-@media (max-width :991px){
-  .practice-details__main h2{
+
+@media (max-width :991px) {
+  .practice-details__main h2 {
     font-size: 30px;
   }
 }
+
 @media (max-width: 640px) {
 
   /* Page hero banner */
@@ -828,14 +866,16 @@
     font-size: var(--fs-h4);
     margin-bottom: 10px;
   }
-  .content-box p{
+
+  .content-box p {
     font-size: 15px;
   }
-  .content-box h3{
+
+  .content-box h3 {
     font-size: 20;
   }
 
-  .practice-details__main .faqqs h2{
+  .practice-details__main .faqqs h2 {
     font-size: 20px;
   }
 }

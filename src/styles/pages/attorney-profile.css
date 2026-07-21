@@ -2,6 +2,31 @@
    ATTORNEY PROFILE PAGE — src/pages/attorney-profile.astro
    ============================================================ */
 
+/* ── Slide-in animations ─────────────────────────────── */
+.reveal-left,
+.reveal-right {
+  opacity: 0;
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.reveal-left {
+  transform: translateX(-60px);
+}
+
+.reveal-right {
+  transform: translateX(60px);
+}
+
+.reveal-right.is-visible,
+.reveal-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right.is-visible {
+  transition-delay: 0.1s;
+}
+
 /* ── Profile section ─────────────────────────────────── */
 .atty-section {
   padding: 80px 0;
@@ -16,7 +41,7 @@
   align-items: center;
   padding: clamp(20px, 2.5vw, 40px);
   border-radius: 20px;
-  background: var(--color-primary-a10);
+  background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1);
 }
 
 .atty-photo {
@@ -158,27 +183,49 @@
     padding: 50px 0;
   }
 
+  .atty-stat h4 {
+    font-weight: 600;
+    color: var(--gcid-body-color) !important;
+    font-size: 15px;
+    line-height: 1.2em;
+  }
+
+  .atty-stat p {
+    font-family: 'Cabin', Helvetica, Arial, Lucida, sans-serif;
+    color: var(--gcid-heading-color);
+    font-size: 18px;
+    line-height: 1.6em;
+    font-weight: 500;
+  }
+
   .atty-inner {
     grid-template-columns: 1fr;
     gap: 30px;
   }
 
   .atty-photo {
-    height: auto;
-    min-height: unset;
-    width: 70%;
-    max-width: 460px;
+    width: 100%;
     margin: 0 auto;
   }
 
+  .atty-name {
+    font-size: 30px;
+  }
+
+  .atty-role {
+    font-size: 19px;
+  }
+
   .atty-photo img {
-    height: 440px;
+    height: 550px;
+    object-fit: cover;
+    object-position: top;
   }
 }
 
 @media (max-width: 640px) {
   .atty-section {
-    padding: 40px 0;
+    padding: 25px 0;
   }
 
   .atty-inner {
@@ -196,11 +243,11 @@
   }
 
   .atty-name {
-    font-size: var(--fs-36);
+    font-size: var(--fs-h4);
   }
 
   .atty-role {
-    font-size: var(--fs-18);
+    font-size: var(--fs-ph);
     margin-bottom: 26px;
   }
 
@@ -214,7 +261,7 @@
 .atty-about {
 
   padding: 70px 0;
-  background: color-mix(in srgb, var(--gcid-primary-color, #ffc64a) 6%, white);
+  background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1) !important;
 }
 
 .atty-about h2 {
@@ -438,7 +485,7 @@
 .atty-achv-card p {
   margin: 0;
   padding: 0;
-  color: var(--gcid-body-color);
+  color: var(--gcid-heading-color);
   font-size: var(--fs-base);
   line-height: 1.6em;
   font-family: var(--et_global_body_font);
@@ -455,20 +502,108 @@
   .atty-achv-col {
     padding: 30px;
   }
+
+  .atty-about {
+    padding: 40px 0px;
+  }
+
+  .atty-about h2 {
+    font-size: var(--fs-30);
+    font-weight: var(--fw-semibold);
+  }
+
+  .atty-about p {
+    color: var(--gcid-body-color) !important;
+    font-size: 16px;
+    line-height: 1.6em;
+    font-weight: 500;
+  }
+
+  .atty-skills-section {
+    padding: 40px 0px;
+  }
+
+  .atty-skills-col h2 {
+    font-size: var(--fs-30);
+    margin-bottom: 10px;
+  }
+
+  .atty-skills-col p {
+    font-size: 16px;
+    line-height: 1.6em;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .atty-bar-header span {
+    font-weight: 600;
+    color: var(--gcid-heading-color) !important;
+    font-size: 18px;
+    line-height: 1.3em;
+  }
+
+  .atty-achv-col h2 {
+    font-size: var(--fs-30);
+    font-weight: var(--fw-semibold);
+  }
+
+  .atty-achv-col p {
+    font-size: 16px;
+    line-height: 1.6em;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: var(--gcid-body-color);
+
+  }
+
 }
 
 @media (max-width: 640px) {
+  .atty-skills-col {
+    padding: 20px;
+  }
+
+  .atty-skills-col h2 {
+    margin-bottom: 10px;
+  }
+
+  .atty-skills-col p {
+    font-size: 15px;
+    color: var(--gcid-body-color) !important;
+    font-weight: var(--fw-semibold);
+    margin-bottom: 25px;
+  }
+
+  .atty-about h2 {
+    font-size: var(--fs-h4);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .atty-about p {
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: var(--gcid-body-color) !important;
+    font-weight: 500;
+  }
+
   .atty-skills-section {
     padding: 50px 0;
   }
 
+  .atty-achv-col {
+    padding: 20px;
+  }
+
   .atty-skills-col h2,
   .atty-achv-col h2 {
-    font-size: var(--fs-34);
+    font-size: var(--fs-h4);
+    margin-bottom: 10px;
   }
 
   .atty-skills-lead {
-    font-size: var(--fs-base);
+    font-size: var(--fs-ph);
+    font-weight: var(--fw-semibold);
   }
 
   .atty-achv-grid {
@@ -479,21 +614,35 @@
   .atty-achv-card {
     min-height: auto;
   }
+
+  .atty-bars .atty-bar-header span {
+    font-size: var(--fs-base);
+  }
+
+  .atty-achv-card h4 {
+    font-size: var(--fs-md);
+    margin-bottom: 5px;
+  }
+
+  .atty-achv-card p {
+    color: var(--gcid-heading-color);
+    font-size: var(--fs-ph);
+  }
 }
 
 /* ── Contact form section ────────────────────────────── */
 
 .atty-contact-section {
-  padding: 80px 0;
-  background: color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 10%, white);
+  padding: 40px 0;
+  background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1) !important;
 }
 
 .atty-contact-inner {
-  width: 60%;
+  width: 90%;
   max-width: 750px;
   margin: 0 auto;
   text-align: center;
-  padding: clamp(20px, 3vw, 40px);
+  padding: 30px;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -519,9 +668,9 @@
 .atty-contact-form textarea {
   box-sizing: border-box;
   width: 100%;
-  border: 1px solid color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 60%, transparent);
+  border: none;
   border-radius: 6px;
-  background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.05);
+  background-color: rgba(255, 255, 255, 0.8);
   color: var(--color-text);
   font-family: "Cabin", sans-serif;
   font-size: var(--fs-base);
@@ -572,10 +721,7 @@
 
 /* ── Responsive ──────────────────────────────────────── */
 @media (max-width: 640px) {
-  .atty-stat__icon {
-    width: 40px;
-    height: 40px;
-  }
+
 
   .atty-skills-grid {
     grid-template-columns: 1fr;
@@ -585,13 +731,29 @@
   .atty-achv-grid {
     grid-template-columns: 1fr;
   }
-.atty-contact-inner {
-  width: 100%;
-}
+
+  .atty-contact-inner {
+    width: 100%;
+  }
+
   .atty-skills-section,
-  .atty-contact-section,
   .atty-about {
-    padding: 40px 0;
+    padding: 20px 0;
+  }
+
+  .atty-contact-section {
+    padding: 20px;
+  }
+
+  .atty-contact-section h2 {
+    font-size: var(--fs-h4);
+    margin-bottom: 20px;
+  }
+
+  .atty-contact-inner {
+    background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.15);
+    border-radius: 20px;
+    padding: 20px;
   }
 
   .atty-form-row {
@@ -599,7 +761,22 @@
   }
 }
 
+@media (max-width: 980px) {
+  .atty-contact-section h2{
+        color: var(--gcid-heading-color) !important;
+        font-size: 30px;
+      }
+  .atty-contact-section .atty-contact-section {
+    padding: 40px 0px;
+  }
+
+  .atty-contact-section .atty-contact-inner {
+    background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.15);
+  }
+  
+}
+
 /* ── Testimonial section: transparent bg on this page ─── */
 .atty-testimonials .testimonial-section {
-  background: transparent;
+  background: var(--color-white) !important;
 }
