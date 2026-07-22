@@ -5,6 +5,7 @@ import Footer from "../../components/layout/Footer.astro";
 import PageHero from "../../components/common/PageHero.astro";
 import FAQ from "../../components/home/FAQ.astro";
 import Clients from "../../components/home/Clients.astro";
+import { Quote, Gavel } from "lucide-astro";
 import img642888 from "../../assets/642888.jpg";
 import img1278242 from "../../assets/1278242.jpg";
 import img1046502 from "../../assets/1046502.jpg";
@@ -79,7 +80,7 @@ const rows = [
       <!-- ── Section header ──────────────────────────── -->
       <div class="ts2-head">
         <div class="contact-kicker">
-          <span>⚖</span>
+          <span><Gavel size={16} /></span>
           <span>Testimonials</span>
         </div>
         <h2>What Our Client's Say</h2>
@@ -91,7 +92,7 @@ const rows = [
           <div class="ts2-row">
             {row.map((t) => (
               <div class="ts2-card">
-                <span class="ts2-quote">&ldquo;</span>
+                <span class="ts2-quote"><Quote size={32} /></span>
                 <div class="ts2-author">
                   <img
                     src={t.photo}

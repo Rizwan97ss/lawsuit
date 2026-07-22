@@ -157,10 +157,33 @@ const groups = [
 </MainLayout>
 
 <script>
-  import { createAccordion } from '../../scripts/accordion';
-  createAccordion({ keepOneOpen: false });
+  // ── Per-group accordion (each group is independent) ──────────────────────
+  document.querySelectorAll<HTMLElement>('.faq-group').forEach((group) => {
+    const items = group.querySelectorAll<HTMLElement>('.faq-item');
 
-  document.querySelectorAll<HTMLAnchorElement>('.faq-nav a').forEach((link) => {
+    items.forEach((item) => {
+      item.querySelector('.faq-question')?.addEventListener('click', () => {
+        const isOpen = item.classList.contains('is-open');
+        // close all in this group
+        items.forEach((i) => {
+          i.classList.remove('is-open');
+          const icon = i.querySelector<HTMLElement>('.faq-question strong');
+          if (icon) icon.textContent = '+';
+        });
+        // open clicked if it was closed
+        if (!isOpen) {
+          item.classList.add('is-open');
+          const icon = item.querySelector<HTMLElement>('.faq-question strong');
+          if (icon) icon.textContent = '−';
+        }
+      });
+    });
+  });
+
+  // ── Smooth scroll nav ────────────────────────────────────────────────────
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>('.faq-nav a');
+
+  navLinks.forEach((link) => {
     link.addEventListener('click', (e) => {
       const id = link.getAttribute('href')?.slice(1);
       const target = id ? document.getElementById(id) : null;
@@ -169,4 +192,25 @@ const groups = [
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
+
+  // ── Active nav highlight via IntersectionObserver ────────────────────────
+  const groups = document.querySelectorAll<HTMLElement>('.faq-group[id]');
+
+  function setActive(id: string) {
+    navLinks.forEach((link) => {
+      const matches = link.getAttribute('href') === `#${id}`;
+      link.classList.toggle('is-active', matches);
+    });
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) setActive((entry.target as HTMLElement).id);
+      });
+    },
+    { rootMargin: '-20% 0px -60% 0px', threshold: 0 }
+  );
+
+  groups.forEach((g) => observer.observe(g));
 </script>
