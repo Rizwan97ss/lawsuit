@@ -15,8 +15,7 @@
 
   /* ── Individual block ─────────────────────────────── */
   .policy-block {
-    background: color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 10%, white);
-    border-radius: var(--radius-sm);
+background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1);    border-radius: var(--radius-sm);
     padding: 32px 36px;
     display: flex;
     flex-direction: column;
@@ -36,6 +35,7 @@
     font-size: var(--fs-base);
     line-height: 1.7;
     color: var(--gcid-body-color, #505658);
+    font-weight: var(--fw-medium);
   }
 
   /* ── Bullet list ──────────────────────────────────── */
@@ -53,7 +53,8 @@
     padding-left: 30px;
     font-size: var(--fs-base);
     line-height: 1.6;
-    color: var(--gcid-body-color, #505658);
+    color: var(--gcid-body-color) !important;
+    font-weight: var(--fw-medium);
   }
 
   .policy-list li::before {
@@ -74,12 +75,38 @@
   }
 
   /* ── Responsive ───────────────────────────────────── */
-  @media (max-width: 767px) {
+  @media (max-width: 981px) {
     .policy-section {
-      padding: 40px 0;
+      padding: 40px 0px;
     }
 
     .policy-block {
-      padding: 24px 20px;
+      padding: 20px;
+    }
+    .policy-block h2{
+      font-size: 22px;
+    }
+    .policy-block p{
+      font-size: var(--fw-base);
+    }
+
+  }
+  @media (max-width: 567px) {
+    .policy-section {
+      padding: 25px 0;
+    }
+ .policy-block h2{
+      font-size: 18px;
+    }
+    .policy-block p{
+      font-size: var(--fw-ph);
+    }
+    .policy-block {
+      padding: 20px;
+    }
+
+    .policy-list li{
+              font-size: var(--fs-ph);
+
     }
   }

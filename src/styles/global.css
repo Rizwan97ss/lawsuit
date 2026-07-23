@@ -53,9 +53,9 @@ a {
 
 button, [type="button"], [type="submit"], [type="reset"],
 .btn, .btn-fill-hover, .practice-view-btn, .header-cta,
-.hcta-btn, .c2-tab {
+.hcta-btn, .c2-tab, .sidebar-cta__button, a[class*="btn"] {
   cursor: pointer;
-  font-family: var(--font-cabin);
+  font-family: var(--font-body);
   font-size: var(--fs-base);
   font-weight: var(--fw-medium);
 }

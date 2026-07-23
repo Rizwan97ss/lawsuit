@@ -57,7 +57,7 @@
     color: var(--color-primary-dark);
     font-family: var(--font-body);
     font-size: var(--fs-base);
-    font-weight: var(--fw-bold);
+    font-weight: var(--fw-medium);
     border-radius: 100px;
     text-decoration: none;
     white-space: nowrap;

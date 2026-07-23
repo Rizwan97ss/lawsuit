@@ -72,7 +72,7 @@
 .c2-form input::placeholder,
 .c2-form textarea::placeholder {
   color: var(--color-text);
-  font-size: var(--fs-base);
+  font-size: var(--fs-ph);
 }
 
 .c2-form select {
@@ -105,7 +105,7 @@
   border: 0;
   background: var(--color-white);
   color: var(--gcid-heading-color, var(--color-text));
-  font-family: var(--font-cabin, "Cabin", sans-serif);
+  font-family: var(--font-body);
   font-size: var(--fs-base);
   font-weight: var(--fw-medium);
   cursor: pointer;
@@ -216,6 +216,14 @@
   .c2-form-col,
   .c2-info-col {
     padding: 20px;
+  }
+
+  .c2-form-col .form-action {
+    justify-content: flex-end;
+  }
+
+  .c2-form-col .form-action button {
+    padding: 0 20px;
   }
 
   .c2-blurb-row {

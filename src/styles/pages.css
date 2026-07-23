@@ -785,7 +785,7 @@
 }
 
 .form-action button span {
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-medium);
   line-height: 1;
 }
 

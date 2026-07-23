@@ -1,85 +1,130 @@
 /* Styles for the Disclaimer / Privacy Policy page */
 
-  /* ── Section ─────────────────────────────────────── */
+/* ── Section ─────────────────────────────────────── */
+.dscl-section {
+  padding: 80px 0;
+  background: var(--color-white);
+}
+
+/* ── Stack of blocks ──────────────────────────────── */
+.dscl-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* ── Individual block ─────────────────────────────── */
+.dscl-block {
+  background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1);
+  border-radius: 10px;
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dscl-block h2 {
+  margin: 0;
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+  font-weight: var(--fw-semibold);
+  color: var(--gcid-heading-color, var(--color-primary-dark));
+  line-height: 1.2;
+}
+
+.dscl-block p {
+  margin: 0;
+  font-size: var(--fs-base);
+  line-height: 1.7;
+  color: var(--gcid-body-color) !important;
+
+}
+
+/* ── Bullet list ──────────────────────────────────── */
+.dscl-list {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dscl-list li {
+  position: relative;
+  padding-left: 30px;
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  color: var(--gcid-body-color, var(--color-muted-alt));
+  font-weight: var(--fw-medium);
+}
+
+.dscl-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--gcid-primary-color, #ffc342);
+  color: var(--color-primary-dark);
+  font-size: var(--fs-11);
+  font-weight: var(--fw-bold);
+}
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 981px) {
   .dscl-section {
-    padding: 80px 0;
-    background: var(--color-white);
+    padding: 40px 0;
   }
 
-  /* ── Stack of blocks ──────────────────────────────── */
-  .dscl-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  /* ── Individual block ─────────────────────────────── */
   .dscl-block {
-    background: color-mix(in srgb, var(--gcid-primary-color, #ffc342) 10%, white);
-    border-radius: 10px;
-    padding: 32px 36px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .dscl-block h2 {
-    margin: 0;
-    font-size: clamp(1.4rem, 2vw, 1.9rem);
-    font-weight: var(--fw-semibold);
-    color: var(--gcid-heading-color, var(--color-primary-dark));
-    line-height: 1.2;
+    padding: 30px;
   }
 
   .dscl-block p {
-    margin: 0;
     font-size: var(--fs-base);
-    line-height: 1.7;
-    color: var(--gcid-body-color, var(--color-muted-alt));
+    font-weight: var(--fw-medium);
   }
 
-  /* ── Bullet list ──────────────────────────────────── */
-  .dscl-list {
-    list-style: none;
-    padding: 0;
-    margin: 4px 0 0;
-    display: flex;
-    flex-direction: column;
+  .dscl-block h2 {
+    font-size: var(--fs-22);
+  }
+
+  .dscl-block {
     gap: 10px;
   }
 
   .dscl-list li {
-    position: relative;
-    padding-left: 30px;
     font-size: var(--fs-base);
-    line-height: 1.6;
-    color: var(--gcid-body-color, var(--color-muted-alt));
+    line-height: 1.6em;
+    font-weight: var(--fw-medium);
+  }
+}
+
+@media (max-width: 567px) {
+  .dscl-section {
+    padding: 25px 0;
   }
 
-  .dscl-list li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    background: var(--gcid-primary-color, #ffc342);
-    color: var(--color-primary-dark);
-    font-size: var(--fs-11);
-    font-weight: var(--fw-bold);
+  .dscl-block {
+    padding: 20px;
   }
 
-  /* ── Responsive ───────────────────────────────────── */
-  @media (max-width: 767px) {
-    .dscl-section {
-      padding: 40px 0;
-    }
-
-    .dscl-block {
-      padding: 24px 20px;
-    }
+  .dscl-block h2 {
+    font-size: var(--fs-18);
   }
+
+  .dscl-block p {
+
+    font-size: var(--fs-ph);
+  }
+
+  .dscl-list li {
+    font-size: var(--fs-ph);
+
+  }
+}

@@ -235,7 +235,7 @@ The home page assembles 15 independent components from `src/components/home/`. E
 - **RSS Feed** — Blog RSS feed at `/rss.xml`
 - **Reading Time** — Estimated read time displayed on blog posts
 - **Scroll Animations** — IntersectionObserver-driven scroll reveal. Add `data-reveal` to any element
-- **Lucide Icons** — Scale, Building2, Gavel, and 500+ SVG icons via `lucide-react`
+- **Lucide Icons** — Scale, Building2, Gavel, Quote, and 500+ SVG icons via `lucide-react` / `lucide-astro`
 - **CSS Design Tokens** — Full design system in `variables.css` — colors, type scale, spacing, radii, shadows
 - **Multiple Page Variants** — Two contact styles, two testimonial styles
 - **Blog Categories** — Filter posts by category at `/blog/category/[category]`
@@ -675,25 +675,41 @@ src/styles/global.css  →  lines ~48–55
 ```css
 button, [type="button"], [type="submit"], [type="reset"],
 .btn, .btn-fill-hover, .practice-view-btn, .header-cta,
-.hcta-btn, .c2-tab {
+.hcta-btn, .c2-tab, .sidebar-cta__button, a[class*="btn"] {
   cursor: pointer;
-  font-family: var(--font-cabin);   /* ← swap font here */
+  font-family: var(--font-body);    /* ← swap font here */
   font-size:   var(--fs-base);      /* ← swap size here */
   font-weight: var(--fw-medium);    /* ← swap weight here */
 }
 ```
 
+This selector covers both `<button>` elements and `<a>` tags used as buttons (any class containing "btn", plus named button classes).
+
 The variables themselves live in `src/styles/variables.css`:
 
 | Variable | Current value | What it controls |
 |---|---|---|
-| `--font-cabin` | `"Cabin", Helvetica, Arial, Lucida, sans-serif` | Button font family |
+| `--font-body` | `'Cabin'` | Button font family |
 | `--fs-base` | `16px` | Button font size |
 | `--fw-medium` | `500` | Button font weight |
 
 **To change all button text at once:** edit the three variable values in `variables.css`. The `global.css` rule picks them up automatically — no component edits needed.
 
 > Individual button rules in `cards.css` and `components.css` deliberately repeat `font-family`, `font-size`, and `font-weight` using the same variables. If you ever need one button class to differ, override just those properties in its own rule.
+
+---
+
+### Gavel / Brand Icon
+
+The `⚖` emoji has been replaced with the Lucide `<Gavel />` icon in all locations:
+
+| File | Usage |
+|---|---|
+| `src/layouts/Footer.astro` | Logo mark beside the firm name |
+| `src/pages/gallery/gallery.astro` | Section kicker icon |
+| `src/pages/testimonials/testimonial_2.astro` | Section kicker icon |
+
+Import: `import { Gavel } from "lucide-astro"` in each file.
 
 ---
 
@@ -873,7 +889,7 @@ scrollReveal: {
 | FAQs | `src/data/faqs.ts` | Edit the array |
 | Sitemap excluded pages | `astro.config.mjs` | `sitemap({ filter: ... })` |
 | RSS feed title | `src/pages/rss.xml.js` | `title:` string |
-| All button font family | `variables.css` | `--font-cabin` |
+| All button font family | `variables.css` | `--font-body` |
 | All button font size | `variables.css` | `--fs-base` |
 | All button font weight | `variables.css` | `--fw-medium` |
 | All button arrow icon | all `.astro` files | Replace `MoveRight` import + JSX |
@@ -1285,7 +1301,7 @@ After changing, also update the Google Fonts `<link>` in `src/layouts/MainLayout
 --font-cabin: "Cabin", Helvetica, Arial, Lucida, sans-serif;
 ```
 
-Both variables must be updated together — `--font-body` is used in `global.css`, `--font-cabin` is used in component CSS with fallbacks.
+Both variables must be updated together — `--font-body` is used in `global.css` (body element and all buttons), `--font-cabin` is used in component CSS with fallbacks.
 
 ---
 
@@ -1553,6 +1569,7 @@ nav: {
 | Change hero / dark background | `variables.css` | `--color-dark` |
 | Swap heading font | `variables.css` | `--font-heading` |
 | Swap body font | `variables.css` | `--font-body` + `--font-cabin` |
+| All button font family | `variables.css` | `--font-body` (applies to all `<button>` and `a[class*="btn"]`) |
 | More space between sections | `variables.css` | `--section-padding` |
 | Rounder or sharper card corners | `variables.css` | `--radius-sm` |
 | Faster or slower hover effects | `variables.css` | `--transition` |
@@ -1692,6 +1709,28 @@ Photo height on desktop is `clamp(340px, 36vw, 470px)` — never `height: 100%` 
 
 ---
 
+### FAQ Page (`src/pages/faq/faq.astro`)
+
+Styles: `src/styles/pages/faq-page.css`
+
+#### Per-group accordion
+
+The FAQ page uses a **custom inline script** (not `createAccordion` from `accordion.ts`) so that each `.faq-group` operates independently. Opening a question in one group does not close questions in other groups. The script queries `.faq-group` elements and attaches a separate listener set to each group's `.faq-item` children.
+
+#### Active nav highlighting
+
+The sidebar category nav uses an `IntersectionObserver` to add `.is-active` to the matching `.faq-nav a` link as the user scrolls through sections. The observer uses `rootMargin: '-20% 0px -60% 0px'` so the active state updates as each `.faq-group[id]` enters the central viewport band.
+
+#### Layout
+
+- Desktop: `grid-template-columns: 1fr 2fr` (sidebar + main)
+- ≤ 980px (tablet): stacks to single column; sidebar becomes static (not sticky)
+- ≤ 767px (mobile): same single column layout
+
+All `.faq-group h2` headings are explicitly `text-align: left` at all breakpoints (a global `.faq-section h2` rule in `components.css` applies `display: flex; justify-content: center` at ≤1024px — the page-specific override wins via specificity).
+
+---
+
 ### Contact Page Style 1 (`src/pages/contact/contact_1.astro`)
 
 Styles: `src/styles/pages/contact-page.css`
@@ -1703,7 +1742,11 @@ If the button animation breaks in the future, check for:
 2. A `transform: translateY()` on hover
 3. A `transition:` property on the button element itself that overrides the one in `variables.css`
 
-The `.contact-card` grid collapses from 2-column to 1-column at ≤ 1024px. The `.form-row` (first name / last name side by side) collapses at ≤ 640px.
+The `.contact-card` grid collapses from 2-column to 1-column at ≤ 981px. The `.form-row` (first name / last name side by side) collapses at ≤ 640px.
+
+On mobile (≤ 640px) the submit button is right-aligned (`justify-content: flex-end`) with reduced padding (`0 20px`). The `<br>` inside the contact info `h2` is hidden via `display: none` at ≤ 981px so the heading flows as a single line on tablet and mobile.
+
+Input and textarea placeholder text uses `var(--fs-ph)` (not `--fs-base`).
 
 ---
 

@@ -286,7 +286,7 @@
 
   font-family: var(--font-cabin);
   font-size: var(--fs-base) !important;
-  font-weight: var(--fw-normal);
+  font-weight: var(--fw-medium);
   line-height: 1;
 
   text-decoration: none;

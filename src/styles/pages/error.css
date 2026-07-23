@@ -7,7 +7,7 @@
     align-items: center;
     justify-content: center;
     padding: 80px 20px;
-    background: var(--color-white);
+    background-color: #fffbf2 !important;
   }
 
   /* ── Centered content ─────────────────────────────── */
