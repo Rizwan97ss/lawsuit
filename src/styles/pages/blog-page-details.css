@@ -14,7 +14,7 @@
 /* ── 2-column layout ─────────────────────────────────── */
 .bd-layout {
   display: grid;
-  grid-template-columns: 1fr 340px;
+  grid-template-columns: 2fr 1fr;
   gap: 40px;
   align-items: start;
 }
@@ -69,8 +69,8 @@
 
 /* Title */
 .bd-title {
-  margin: 0;
-  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  margin: 20px 0px 20px 0px;
+  font-size: var(--fs-26);
   font-weight: var(--fw-semibold);
   color: var(--gcid-heading-color, var(--color-primary-dark));
   line-height: 1.25;

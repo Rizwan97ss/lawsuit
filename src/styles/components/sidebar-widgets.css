@@ -7,10 +7,10 @@
 /* Widget card */
 .sidebar-widget {
   background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.15);
-  border: 1px solid rgba(255, 196, 66, 0.15);
+  /* border: 1px solid rgba(255, 196, 66, 0.15); */
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+  /* box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04); */
 }
 
 .sidebar-widget__title {
@@ -45,10 +45,10 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: var(--gcid-heading-color, var(--color-primary-dark));
-  font-family: "Cabin", sans-serif;
-  font-size: var(--fs-base);
-  font-weight: var(--fw-medium);
+    color: var(--gcid-heading-color) !important;
+  font-family: "Cabin";
+  font-size: var(--fs-ph);
+  font-weight: var(--fw-normal);
   text-decoration: none;
   transition:
     color 0.3s ease,
@@ -76,7 +76,7 @@
   margin: 0;
   padding: 20px;
   display: flex;
-    background: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.15);
+    /* background: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.15); */
 
   flex-direction: column;
   gap: 22px;
@@ -157,9 +157,9 @@
     width: 82px;
     height: 68px;
   }
-  .sidebar-cat-list{
+  /* .sidebar-cat-list{
     background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.15);
-  }
+  } */
   .sidebar-widget__title{
     font-size: 18px;
     font-weight: 700;

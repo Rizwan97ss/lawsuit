@@ -1,15 +1,17 @@
 /* Styles for the practice area dynamic slug page ([slug].astro) */
 
 .cs-section {
-  display: flex;
+background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1);  display: flex;
   flex-direction: column;
   gap: 16px;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .cs-section h2 {
   margin: 0;
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
-  font-weight: var(--fw-bold);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-semibold);
   color: var(--gcid-heading-color, var(--color-primary-dark));
   line-height: 1.2;
 }
@@ -20,7 +22,8 @@
   line-height: 1.7;
   margin-top: 20px;
   margin-bottom: 20px;
-  color: var(--gcid-primary-dark);
+    color: var(--gcid-body-color) !important;
+    font-weight: var(--fw-medium);
 }
 
 .cs-bullet-list {
@@ -115,17 +118,21 @@
 .cs-info-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
   margin-top: 10px;
 }
 
 .cs-info-item {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 12px 14px;
-  border-radius: 8px;
-  background: color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 15%, white);
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  transition: background 0.3s ease;
+  cursor: default;
+}
+
+.cs-info-item:last-child {
+  border-bottom: none;
 }
 
 .cs-section p {
@@ -135,30 +142,31 @@
 }
 
 .cs-info-item__icon {
-  width: 44px;
-  height: 44px;
+  width: 60px;
+  height: 60px;
   flex-shrink: 0;
   display: grid;
   place-items: center;
-  border-radius: 50%;
+  border-radius: 10px;
   background: var(--gcid-primary-color, var(--color-primary));
   color: var(--color-primary-dark);
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .cs-info-item h4 {
-  margin: 0 0 2px;
-  font-size: var(--fs-xs);
+  margin: 0 0 4px;
+  font-size: var(--fs-18);
   font-weight: var(--fw-semibold);
-  color: var(--gcid-body-color, #505658);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  color: var(--gcid-heading-color, var(--color-primary-dark));
 }
 
 .cs-info-item p {
+      font-family: 'Cabin', Helvetica, Arial, Lucida, sans-serif;
+
   margin: 0;
   font-size: var(--fs-base);
-  font-weight: var(--fw-semibold);
-  color: var(--gcid-heading-color, var(--color-primary-dark));
+  font-weight: var(--fw-medium);
+    color: var(--gcid-body-color);
 }
 
 .service-list li.active a {

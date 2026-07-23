@@ -152,11 +152,16 @@
   height: 450px;
 }
 
-.content-box,
-.sidebar-card {
+.content-box {
   padding: 20px;
   border-radius: var(--radius-sm);
   background: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1);
+}
+
+.sidebar-card {
+  border-radius: var(--radius-sm);
+  background: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1);
+  overflow: hidden;
 }
 
 .content-box h2 {
@@ -194,7 +199,7 @@
 .case-row__content h3,
 .sidebar-card h3 {
   margin: 0 0 15px;
-  font-size: var(--fs-h4);
+  font-size: var(--fs-base);
   line-height: 1.2;
   color: var(--gcid-heading-color, var(--color-primary-dark));
 }
@@ -435,7 +440,6 @@
     font-weight: var(--fw-medium);
   }
   .practice-details__main .cs-section p{
-    color: var(--color-primary-dark) !important;
     font-size: 16px;
     line-height: 1.6em;
     font-weight: var(--fw-medium);
@@ -582,18 +586,38 @@
 }
 
 .sidebar-card {
-  padding: 20px;
+  padding: 0;
   border-radius: var(--radius-sm);
   background: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1);
+  overflow: hidden;
 }
 
-.sidebar-card h3 {
-  margin: 0 0 20px;
-  color: var(--gcid-heading-color, var(--color-primary-dark));
+.sidebar-card > h3 {
+  margin: 0;
+  padding: 18px 20px;
+  background: var(--gcid-primary-color, var(--color-primary)) !important;
+  color: var(--gcid-heading-color, var(--color-primary-dark)) !important;
   font-family: var(--font-heading);
   font-size: var(--fs-h4);
   font-weight: var(--fw-semibold);
   line-height: 1.2;
+}
+
+.sidebar-card > h3 ~ * {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.sidebar-card > h3 ~ *:first-of-type {
+  margin-top: 16px;
+}
+
+.sidebar-card > h3 ~ *:last-child {
+  margin-bottom: 20px;
+}
+
+.sidebar-card--plain > h3 {
+  background: transparent !important;
 }
 
 .category-list {

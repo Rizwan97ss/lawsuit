@@ -14,7 +14,7 @@
 /* ── 2-column layout (blog-grid | sidebar) ──────────── */
 .blog-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 360px;
+  grid-template-columns: 2fr 1fr;
   gap: 32px;
   align-items: start;
 }
@@ -101,7 +101,7 @@
     color: var(--gcid-bah6l7jb1n) !important;
   font-family: var(--font-cabin);
   font-size: var(--fs-sm);
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-normal);
   line-height: 1.2;
 }
 
@@ -166,8 +166,10 @@
 
 /* Override shared title size for this page */
 .blog-section .sidebar-widget__title {
-  font-size: var(--fs-h3);
-  font-weight: 700;
+  font-weight: var(--fw-bold);
+    color: var(--gcid-heading-color) !important;
+    font-size: 22px;
+    line-height: 1.2em;
 }
 
 /* ── Search widget (blog index only) ─────────────────── */
