@@ -121,12 +121,25 @@ const jsonLd = isHome
 
     <!-- ── Fonts ────────────────────────────────────────── -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css?family=Bitter:400,500,600,700,800|Cabin:400,500,600,700|Inter:300,400,500,600,700&subset=latin,latin-ext&display=swap"
+    />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Bitter:400,500,600,700,800|Cabin:400,500,600,700|Inter:300,400,500,600,700&subset=latin,latin-ext&display=swap"
-      media="all"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Bitter:400,500,600,700,800|Cabin:400,500,600,700|Inter:300,400,500,600,700&subset=latin,latin-ext&display=swap"
+      />
+    </noscript>
 
     <!-- ── JSON-LD Structured Data ──────────────────────── -->
     {isHome && <script is:inline type="application/ld+json" set:html={jsonLd} />}

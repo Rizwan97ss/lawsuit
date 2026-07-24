@@ -40,9 +40,9 @@ const services = [
               <p>+01 23456789</p>
             </a>
 
-            <a href="mailto:contact@example.com" class="contact-item">
+            <a href="mailto:contact@barister.netlify.app" class="contact-item">
               <span><Mail size={20} /></span>
-              <p>contact@example.com</p>
+              <p>contact@barister.netlify.app</p>
             </a>
 
             <div class="contact-item">
@@ -75,7 +75,8 @@ const services = [
           </div>
 
           <div class="field-wrap">
-            <select name="service">
+            <label for="service-select" class="sr-only">Select Service</label>
+            <select name="service" id="service-select">
               <option value="">Select Service</option>
               {services.map((service) => (
                 <option value={service}>{service}</option>

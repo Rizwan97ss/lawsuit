@@ -19,7 +19,7 @@ const locations = [
     id: "london",
     label: "London",
     phone: "+01 23456789",
-    email: "contact@example.com",
+    email: "contact@barister.netlify.app",
     address: "9976 Reynalda Ways, London",
     mapSrc:
       "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d37912432.365362324!2d-4.473772!3d54.55128!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x25a3b1142c791a9%3A0xc4f8a0433288257a!2sUnited%20Kingdom!5e0!3m2!1sen!2sbd!4v1774210451357!5m2!1sen!2sbd",
@@ -28,7 +28,7 @@ const locations = [
     id: "singapore",
     label: "Singapore",
     phone: "+98 76543210",
-    email: "demo@example.com",
+    email: "info@barister.netlify.app",
     address: "90 Bukit Batok, Singapore",
     mapSrc:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d510562.31415020354!2d103.51456240323388!3d1.3146649690516565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da11238a8b9375%3A0x887869cf52abf5c4!2sSingapore!5e0!3m2!1sen!2sbd!4v1775980005830!5m2!1sen!2sbd",
@@ -69,7 +69,8 @@ const locations = [
             <span class="field-error"></span>
           </div>
           <div class="field-wrap">
-            <select name="service">
+            <label for="service-select" class="sr-only">Select Service</label>
+            <select name="service" id="service-select">
               <option value="">Select Service</option>
               {services.map((s) => <option value={s}>{s}</option>)}
             </select>

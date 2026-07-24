@@ -86,7 +86,7 @@ const areas = [
               <h3>{area.title}</h3>
               <p>{area.text}</p>
 
-              <a href={`/practice-areas/${area.slug}`} class="practice-view-btn btn-fill-hover">
+              <a href={`/practice-areas/${area.slug}`} class="practice-view-btn btn-fill-hover" aria-label={`Read more about ${area.title}`}>
                 Read More <MoveRight size={16} />
               </a>
             </div>

@@ -12,7 +12,7 @@ import netlify from '@astrojs/netlify';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://barister.netlify.app',
   integrations: [
     mdx(),
     sitemap({

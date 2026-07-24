@@ -7,4 +7,4 @@ Disallow: /blog/blog-details
 Disallow: /case-study/case_study_details
 Disallow: /practice-areas/practice-details
 
-Sitemap: https://example.com/sitemap-index.xml
+Sitemap: https://barister.netlify.app/sitemap-index.xml

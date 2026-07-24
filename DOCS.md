@@ -28,6 +28,7 @@ Complete reference for the Civitas Law firm website.
 20. [Button Patterns](#button-patterns)
 21. [Page-Specific Notes](#page-specific-notes)
 22. [Going Live](#going-live)
+23. [Site Pages](#site-pages)
 
 ---
 
@@ -36,6 +37,7 @@ Complete reference for the Civitas Law firm website.
 | Field | Value |
 |---|---|
 | Project Name | Civitas Law |
+| Live URL | [barister.netlify.app](https://barister.netlify.app) |
 | Framework | Astro 7 (SSR via Netlify adapter) |
 | UI Library | React 19 |
 | Language | TypeScript 6 |
@@ -258,7 +260,7 @@ src/consts.ts
 ```ts
 export const SITE_TITLE       = 'Civitas Law';
 export const SITE_DESCRIPTION = 'Civitas Law offers experienced legal counsel...';
-export const SITE_URL         = 'https://example.com';   // ← your production domain
+export const SITE_URL         = 'https://barister.netlify.app';   // ← your production domain
 export const SITE_OG_IMAGE    = '/og-image.jpg';         // ← 1200×630 image in /public/
 
 export const FIRM_NAME    = 'Civitas Law';
@@ -465,7 +467,7 @@ export default defineConfig({
 ```
 
 **After deploying**, submit the sitemap URL to Google Search Console:
-`https://your-domain.com/sitemap-index.xml`
+`https://barister.netlify.app/sitemap-index.xml`
 
 ---
 
@@ -1750,6 +1752,20 @@ Input and textarea placeholder text uses `var(--fs-ph)` (not `--fs-base`).
 
 ---
 
+### Contact Page Style 2 (`src/pages/contact/contact_2.astro`)
+
+Styles: `src/styles/pages/contact-page-2.css`
+
+Two-column layout with tabbed info panel on the right and a form on the left (`.c2-grid: 1fr 2fr`). Collapses to single column at ≤ 980px.
+
+Input and textarea placeholder text uses `var(--fs-ph)`.
+
+The form tabs (`.c2-tab`) use `font-family: var(--font-body)` and `font-weight: var(--fw-medium)`.
+
+On mobile (≤ 640px) the submit button is right-aligned (`justify-content: flex-end`) with padding `13px 20px` — the `13px` vertical matches the base `.form-action button` rule so the button retains its full height; `20px` horizontal is the reduced side padding.
+
+---
+
 ### Blog Category Page (`src/pages/blog/category/[category].astro`)
 
 The Read More button must include `btn-fill-hover`:
@@ -1793,7 +1809,7 @@ Open `astro.config.mjs` and set `site` to your production domain. This is requir
 
 ```js
 export default defineConfig({
-  site: 'https://your-domain.com',   // ← must match SITE_URL in consts.ts
+  site: 'https://barister.netlify.app',   // ← must match SITE_URL in consts.ts
   ...
 })
 ```
@@ -1895,3 +1911,81 @@ SOME_SECRET_KEY=xxxx
 | 16 | Verify RSS feed | Visit `/rss.xml` after deploy |
 | 17 | Submit sitemap to Google Search Console | search.google.com/search-console |
 | 18 | Test social sharing preview | pastes.io/ogp or opengraph.xyz with your URL |
+
+---
+
+## Site Pages
+
+All live pages on **[barister.netlify.app](https://barister.netlify.app)**. Use this as a human-readable sitemap for QA, client review, and link auditing.
+
+### Main Pages
+
+| Page | URL |
+|---|---|
+| Home | [barister.netlify.app](https://barister.netlify.app) |
+| About | [barister.netlify.app/about](https://barister.netlify.app/about) |
+| Attorney Profile | [barister.netlify.app/attorney-profile](https://barister.netlify.app/attorney-profile) |
+| Privacy Policy | [barister.netlify.app/privacy/privacy](https://barister.netlify.app/privacy/privacy) |
+| Disclaimer | [barister.netlify.app/disclaimer/disclaimer](https://barister.netlify.app/disclaimer/disclaimer) |
+| 404 Error | [barister.netlify.app/404](https://barister.netlify.app/404) |
+
+### Practice Areas
+
+| Page | URL |
+|---|---|
+| All Practice Areas | [barister.netlify.app/practice-areas](https://barister.netlify.app/practice-areas) |
+| Corporate & Business Law | [barister.netlify.app/practice-areas/corporate-and-business-law](https://barister.netlify.app/practice-areas/corporate-and-business-law) |
+| Family Law & Mediation | [barister.netlify.app/practice-areas/family-law-and-mediation](https://barister.netlify.app/practice-areas/family-law-and-mediation) |
+| Personal Injury Litigation | [barister.netlify.app/practice-areas/personal-injury-litigation](https://barister.netlify.app/practice-areas/personal-injury-litigation) |
+| Estate Planning & Probate | [barister.netlify.app/practice-areas/estate-planning-and-probate](https://barister.netlify.app/practice-areas/estate-planning-and-probate) |
+| Criminal Defense | [barister.netlify.app/practice-areas/criminal-defense](https://barister.netlify.app/practice-areas/criminal-defense) |
+| Real Estate Law | [barister.netlify.app/practice-areas/real-estate-law](https://barister.netlify.app/practice-areas/real-estate-law) |
+
+### Blog
+
+| Page | URL |
+|---|---|
+| Blog Index | [barister.netlify.app/blog](https://barister.netlify.app/blog) |
+| Blog Post (dynamic) | barister.netlify.app/blog/[slug] |
+| Blog Category (dynamic) | barister.netlify.app/blog/category/[category] |
+
+### Case Studies
+
+| Page | URL |
+|---|---|
+| All Case Studies | [barister.netlify.app/case-study](https://barister.netlify.app/case-study) |
+| Case Study Detail (dynamic) | barister.netlify.app/case-study/[slug] |
+
+### Contact
+
+| Page | URL |
+|---|---|
+| Contact Index | [barister.netlify.app/contact](https://barister.netlify.app/contact) |
+| Contact Style 1 | [barister.netlify.app/contact/contact_1](https://barister.netlify.app/contact/contact_1) |
+| Contact Style 2 | [barister.netlify.app/contact/contact_2](https://barister.netlify.app/contact/contact_2) |
+
+### FAQ
+
+| Page | URL |
+|---|---|
+| FAQ Page | [barister.netlify.app/faq/faq](https://barister.netlify.app/faq/faq) |
+
+### Gallery
+
+| Page | URL |
+|---|---|
+| Gallery | [barister.netlify.app/gallery/gallery](https://barister.netlify.app/gallery/gallery) |
+
+### Testimonials
+
+| Page | URL |
+|---|---|
+| Testimonials Style 1 | [barister.netlify.app/testimonials](https://barister.netlify.app/testimonials) |
+| Testimonials Style 2 | [barister.netlify.app/testimonials/testimonial_2](https://barister.netlify.app/testimonials/testimonial_2) |
+
+### Feeds & Meta
+
+| Resource | URL |
+|---|---|
+| XML Sitemap | [barister.netlify.app/sitemap-index.xml](https://barister.netlify.app/sitemap-index.xml) |
+| RSS Feed | [barister.netlify.app/rss.xml](https://barister.netlify.app/rss.xml) |
