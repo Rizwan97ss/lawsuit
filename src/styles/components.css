@@ -3030,9 +3030,9 @@
 }
 
 .faq-answer p {
-  /* padding-top: 20px; */
+  padding-top: 20px;
   padding-right: 20px;
-  /* padding-bottom: 20px; */
+  padding-bottom: 20px;
   padding-left: 20px;
   font-weight: var(--fw-normal);
   color: var(--gcid-bah6l7jb1n);

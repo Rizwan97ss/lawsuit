@@ -633,17 +633,17 @@
 /* ── Contact form section ────────────────────────────── */
 
 .atty-contact-section {
-  padding: 40px 0;
+  padding: 60px 0;
   background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1) !important;
 }
 
 .atty-contact-inner {
-  width: 90%;
-  max-width: 750px;
-  margin: 0 auto;
+  background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.15);
+  width: 60%;
+  margin-inline: auto;
   text-align: center;
   padding: 30px;
-  border-radius: 10px;
+  border-radius: 14px;
   overflow: hidden;
 }
 
@@ -734,6 +734,7 @@
 
   .atty-contact-inner {
     width: 100%;
+    padding: 30px;
   }
 
   .atty-skills-section,
@@ -742,7 +743,7 @@
   }
 
   .atty-contact-section {
-    padding: 20px;
+    padding: 32px 0;
   }
 
   .atty-contact-section h2 {
@@ -751,9 +752,8 @@
   }
 
   .atty-contact-inner {
-    background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.15);
-    border-radius: 20px;
     padding: 20px;
+    border-radius: 14px;
   }
 
   .atty-form-row {
@@ -762,18 +762,21 @@
 }
 
 @media (max-width: 980px) {
-  .atty-contact-section h2{
-        color: var(--gcid-heading-color) !important;
-        font-size: 30px;
-      }
-  .atty-contact-section .atty-contact-section {
-    padding: 40px 0px;
+  .atty-contact-section {
+  padding: 40px;}
+  .atty-contact-section {
+    padding: 40px 0;
   }
 
-  .atty-contact-section .atty-contact-inner {
-    background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.15);
+  .atty-contact-inner {
+    width: 90%;
+    padding: 20px;
   }
-  
+
+  .atty-contact-section h2 {
+    color: var(--gcid-heading-color) !important;
+    font-size: 30px;
+  }
 }
 
 /* ── Testimonial section: transparent bg on this page ─── */

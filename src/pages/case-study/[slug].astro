@@ -3,7 +3,7 @@ import MainLayout from "../../layouts/MainLayout.astro";
 import Header from "../../components/layout/Header.astro";
 import Footer from "../../components/layout/Footer.astro";
 import PageHero from "../../components/common/PageHero.astro";
-import { FileText, Calendar, User, Clock, Phone } from "lucide-astro";
+import { FileText, Calendar, User, Clock, Phone, Award } from "lucide-astro";
 import img1701078 from "../../assets/1701078.jpg";
 import img1700924 from "../../assets/1700924.jpg";
 import img477132 from "../../assets/477132.jpg";
@@ -303,6 +303,9 @@ const caseInfoIcons = [FileText, Calendar, User, Clock];
           <div class="cs-achieve-grid">
             {caseData.achievements.map((a) => (
               <div class="cs-achieve-blurb">
+                <div class="cs-achieve-blurb__icon">
+                  <Award size={32} strokeWidth={2} />
+                </div>
                 <h4>{a.title}</h4>
                 <p>{a.desc}</p>
               </div>

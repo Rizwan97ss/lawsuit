@@ -91,14 +91,29 @@ background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) cal
 .cs-achieve-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 36px 24px;
+  padding-top: 28px;
 }
 
 .cs-achieve-blurb {
-  padding: 24px;
-  border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 12%, white);
-  border-left: 4px solid var(--gcid-primary-color, var(--color-primary));
+  position: relative;
+  padding: 72px 24px 28px;
+  border-radius: 16px;
+  background: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1);
+}
+
+.cs-achieve-blurb__icon {
+  position: absolute;
+  top: -24px;
+  left: 24px;
+  width: 72px;
+  height: 72px;
+  border-radius: 14px;
+  border: 7px solid #ffffff;
+  background: var(--gcid-primary-color, #ffc64a);
+  display: grid;
+  place-items: center;
+  color: var(--color-dark);
 }
 
 .cs-achieve-blurb h4 {
@@ -110,7 +125,7 @@ background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) cal
 
 .cs-achieve-blurb p {
   margin: 0;
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
   line-height: 1.6;
   color: var(--gcid-body-color, #505658);
 }
@@ -204,9 +219,8 @@ background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) cal
   }
 
   .cs-achieve-grid {
-    display: grid;
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 40px 20px;
   }
 
   .practice-details__hero-image img {
