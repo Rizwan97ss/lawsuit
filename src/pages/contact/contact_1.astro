@@ -32,7 +32,7 @@ const services = [
             <span>Have Any Question?</span>
           </div>
 
-          <h2>Contact Us For More <br> Information</h2>
+          <h2>Contact Us For More <br /> Information</h2>
 
           <div class="contact-list">
             <a href="tel:+0123456789" class="contact-item">
@@ -57,8 +57,13 @@ const services = [
           </div>
         </div>
 
-        <form  action="https://formspree.io/f/mgogpgav"
-  method="POST" class="contact-form" id="c1-form" novalidate>
+        <form
+          action="https://formspree.io/f/mgogpgav"
+          method="POST"
+          class="contact-form"
+          id="c1-form"
+          novalidate
+        >
           <div class="form-row">
             <div class="field-wrap">
               <input type="text" name="name" placeholder="Name" />
@@ -79,9 +84,11 @@ const services = [
             <label for="service-select" class="sr-only">Select Service</label>
             <select name="service" id="service-select">
               <option value="">Select Service</option>
-              {services.map((service) => (
-                <option value={service}>{service}</option>
-              ))}
+              {
+                services.map((service) => (
+                  <option value={service}>{service}</option>
+                ))
+              }
             </select>
             <span class="field-error"></span>
           </div>
@@ -96,7 +103,10 @@ const services = [
               Book Appointment <MoveRight size={16} />
             </button>
           </div>
-          <p class="form-success" style="display:none;color:#22c55e;font-weight:600;">
+          <p
+            class="form-success"
+            style="display:none;color:#22c55e;font-weight:600;"
+          >
             Thank you! We'll be in touch shortly.
           </p>
         </form>
@@ -138,20 +148,39 @@ const services = [
       const name = form.querySelector<HTMLInputElement>('[name="name"]')!;
       const phone = form.querySelector<HTMLInputElement>('[name="phone"]')!;
       const email = form.querySelector<HTMLInputElement>('[name="email"]')!;
-      const service = form.querySelector<HTMLSelectElement>('[name="service"]')!;
-      const message = form.querySelector<HTMLTextAreaElement>('[name="message"]')!;
+      const service =
+        form.querySelector<HTMLSelectElement>('[name="service"]')!;
+      const message =
+        form.querySelector<HTMLTextAreaElement>('[name="message"]')!;
 
-      if (name.value.trim().length < 2) { showErr(name, "Name must be at least 2 characters."); ok = false; }
-      if (!/^[\d\s\-\+\(\)]{7,}$/.test(phone.value.trim())) { showErr(phone, "Enter a valid phone number (digits, min 7)."); ok = false; }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) { showErr(email, "Enter a valid email address."); ok = false; }
-      if (!service.value) { showErr(service, "Please select a service."); ok = false; }
-      if (message.value.trim().length < 10) { showErr(message, "Message must be at least 10 characters."); ok = false; }
+      if (name.value.trim().length < 2) {
+        showErr(name, "Name must be at least 2 characters.");
+        ok = false;
+      }
+      if (!/^[\d\s\-\+\(\)]{7,}$/.test(phone.value.trim())) {
+        showErr(phone, "Enter a valid phone number (digits, min 7).");
+        ok = false;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+        showErr(email, "Enter a valid email address.");
+        ok = false;
+      }
+      if (!service.value) {
+        showErr(service, "Please select a service.");
+        ok = false;
+      }
+      if (message.value.trim().length < 10) {
+        showErr(message, "Message must be at least 10 characters.");
+        ok = false;
+      }
 
       if (ok) {
         const success = form.querySelector<HTMLElement>(".form-success")!;
         form.reset();
         success.style.display = "block";
-        setTimeout(() => { success.style.display = "none"; }, 5000);
+        setTimeout(() => {
+          success.style.display = "none";
+        }, 5000);
       }
     });
   }
