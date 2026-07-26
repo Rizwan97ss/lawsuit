@@ -55,7 +55,15 @@ const locations = [
 
         <h2 class="c2-heading">Contact Us For More Information</h2>
 
-        <form class="c2-form" id="c2-form" novalidate>
+        <form
+          class="c2-form"
+          id="c2-form"
+          name="contact-2"
+          method="POST"
+          data-netlify="true"
+          novalidate
+        >
+          <input type="hidden" name="form-name" value="contact-2" />
           <div class="field-wrap">
             <input type="text" name="name" placeholder="Name" />
             <span class="field-error"></span>
@@ -197,9 +205,37 @@ const locations = [
 
       if (ok) {
         const success = c2Form.querySelector<HTMLElement>(".form-success")!;
-        c2Form.reset();
-        success.style.display = "block";
-        setTimeout(() => { success.style.display = "none"; }, 5000);
+        const btn = c2Form.querySelector<HTMLButtonElement>("button[type='submit']")!;
+        btn.disabled = true;
+        btn.textContent = "Sending…";
+
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(new FormData(c2Form) as any).toString(),
+        })
+          .then((res) => {
+            if (res.ok) {
+              c2Form.reset();
+              success.style.color = "#22c55e";
+              success.textContent = "Thank you! We'll be in touch shortly.";
+              success.style.display = "block";
+              setTimeout(() => { success.style.display = "none"; }, 5000);
+            } else {
+              success.style.color = "#ef4444";
+              success.textContent = "Something went wrong. Please try again.";
+              success.style.display = "block";
+            }
+          })
+          .catch(() => {
+            success.style.color = "#ef4444";
+            success.textContent = "Network error. Please try again.";
+            success.style.display = "block";
+          })
+          .finally(() => {
+            btn.disabled = false;
+            btn.innerHTML = "Book Appointment";
+          });
       }
     });
   }
