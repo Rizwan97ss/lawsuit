@@ -199,27 +199,31 @@ const socials = [
     <div class="container atty-contact-inner">
       <h2>Let's Win Together</h2>
 
-      <form class="atty-contact-form reveal-scale">
+      <form
+        class="atty-contact-form reveal-scale"
+        id="atty-form"
+        action="https://formspree.io/f/mgogpgav"
+        method="POST"
+        novalidate
+      >
         <div class="atty-form-row">
-          <input type="text" placeholder="Name" required />
-          <input
-            type="tel"
-            placeholder="Phone Number"
-            pattern="[0-9\s\-]*"
-            required
-          />
+          <input type="text" name="name" placeholder="Name" />
+          <input type="tel" name="phone" placeholder="Phone Number" pattern="[0-9\s\-]*" />
         </div>
-        <input type="email" placeholder="Email Address" required />
-        <select required>
+        <input type="email" name="email" placeholder="Email Address" />
+        <select name="service">
           <option value="">Select Service</option>
           {services.map((s) => <option value={s}>{s}</option>)}
         </select>
-        <textarea placeholder="Your Message" required></textarea>
+        <textarea name="message" placeholder="Your Message"></textarea>
         <div class="atty-form-action">
           <button type="submit" class="practice-view-btn btn-fill-hover">
             Book Appointment <MoveRight size={16} />
           </button>
         </div>
+        <p class="atty-form-success" style="display:none;color:#22c55e;font-weight:600;margin-top:8px;">
+          Thank you! We'll be in touch shortly.
+        </p>
       </form>
     </div>
   </section>
@@ -231,6 +235,71 @@ const socials = [
 </MainLayout>
 
 <script>
+  /* ── Attorney contact form → Formspree ─────────────── */
+  const attyForm = document.getElementById("atty-form") as HTMLFormElement | null;
+  if (attyForm) {
+    function showErr(el: HTMLElement, msg: string) {
+      el.classList.add("invalid");
+      const span = el.nextElementSibling as HTMLElement;
+      if (span?.classList.contains("field-error")) span.textContent = msg;
+    }
+    function clearErr(el: HTMLElement) {
+      el.classList.remove("invalid");
+      const span = el.nextElementSibling as HTMLElement;
+      if (span?.classList.contains("field-error")) span.textContent = "";
+    }
+    attyForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      let ok = true;
+      const name = attyForm.querySelector<HTMLInputElement>('[name="name"]')!;
+      const phone = attyForm.querySelector<HTMLInputElement>('[name="phone"]')!;
+      const email = attyForm.querySelector<HTMLInputElement>('[name="email"]')!;
+      const service = attyForm.querySelector<HTMLSelectElement>('[name="service"]')!;
+      const message = attyForm.querySelector<HTMLTextAreaElement>('[name="message"]')!;
+
+      if (name.value.trim().length < 2) { showErr(name, "Name must be at least 2 characters."); ok = false; }
+      if (!/^[\d\s\-\+\(\)]{7,}$/.test(phone.value.trim())) { showErr(phone, "Enter a valid phone number."); ok = false; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) { showErr(email, "Enter a valid email address."); ok = false; }
+      if (!service.value) { showErr(service, "Please select a service."); ok = false; }
+      if (message.value.trim().length < 10) { showErr(message, "Message must be at least 10 characters."); ok = false; }
+
+      if (ok) {
+        const success = attyForm.querySelector<HTMLElement>(".atty-form-success")!;
+        const btn = attyForm.querySelector<HTMLButtonElement>("button[type='submit']")!;
+        btn.disabled = true;
+        btn.textContent = "Sending…";
+
+        fetch(attyForm.action, {
+          method: "POST",
+          body: new FormData(attyForm),
+          headers: { Accept: "application/json" },
+        })
+          .then((res) => {
+            if (res.ok) {
+              attyForm.reset();
+              success.style.color = "#22c55e";
+              success.textContent = "Thank you! We'll be in touch shortly.";
+              success.style.display = "block";
+              setTimeout(() => { success.style.display = "none"; }, 5000);
+            } else {
+              success.style.color = "#ef4444";
+              success.textContent = "Something went wrong. Please try again.";
+              success.style.display = "block";
+            }
+          })
+          .catch(() => {
+            success.style.color = "#ef4444";
+            success.textContent = "Network error. Please try again.";
+            success.style.display = "block";
+          })
+          .finally(() => {
+            btn.disabled = false;
+            btn.innerHTML = "Book Appointment";
+          });
+      }
+    });
+  }
+
   /* ── Progress bars ─────────────────────────────────── */
   const bars = document.querySelectorAll<HTMLElement>(".atty-bar-fill");
   const barObserver = new IntersectionObserver(

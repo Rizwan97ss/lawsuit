@@ -27,8 +27,9 @@ Complete reference for the Civitas Law firm website.
 19. [Customization Guide — What You Can Change](#customization-guide--what-you-can-change)
 20. [Button Patterns](#button-patterns)
 21. [Page-Specific Notes](#page-specific-notes)
-22. [Going Live](#going-live)
-23. [Site Pages](#site-pages)
+22. [Form Integrations](#form-integrations)
+23. [Going Live](#going-live)
+24. [Site Pages](#site-pages)
 
 ---
 
@@ -241,7 +242,7 @@ The home page assembles 15 independent components from `src/components/home/`. E
 - **CSS Design Tokens** — Full design system in `variables.css` — colors, type scale, spacing, radii, shadows
 - **Multiple Page Variants** — Two contact styles, two testimonial styles
 - **Blog Categories** — Filter posts by category at `/blog/category/[category]`
-- **Contact Forms** — Two layouts with client-side validation
+- **Contact Forms** — Four forms with client-side validation + Formspree submission (Contact 1, Contact 2, Attorney Profile, Home CTA)
 - **Responsive Design** — Mobile-first breakpoints; sliders collapse, grids stack
 - **Reduced Motion** — `prefers-reduced-motion` disables all transitions automatically
 - **Custom 404** — Branded error page
@@ -1707,7 +1708,9 @@ Photo height on desktop is `clamp(340px, 36vw, 470px)` — never `height: 100%` 
 
 #### Contact section below the profile
 
-`.atty-contact-inner` must use `width: 100%; max-width: 750px` — never `width: 750px`. A fixed pixel width overflows the container on screens narrower than 750px.
+The contact form submits to **Formspree** (`https://formspree.io/f/mgogpgav`) via `fetch` with the same validation and loading-state pattern as the contact pages. The form has `id="atty-form"` and the submit script is in the page-level `<script>` block.
+
+`.atty-contact-inner` width: `60%` on desktop, `80%` on tablet (≤ 980px), `100%` on mobile (≤ 640px), centered with `margin-inline: auto`. Padding is `30px` on desktop, `20px` on tablet and mobile.
 
 ---
 
@@ -1737,12 +1740,9 @@ All `.faq-group h2` headings are explicitly `text-align: left` at all breakpoint
 
 Styles: `src/styles/pages/contact-page.css`
 
-The form submit button uses `btn-fill-hover` for animation. It has **no** `:hover` rule in the CSS — all hover behavior comes from `variables.css`.
+Form submits to **Formspree** (`https://formspree.io/f/mgogpgav`) via `fetch` with `Accept: application/json`. Client-side validation runs first; if all fields pass, the button disables and shows "Sending…", then the fetch fires. On success the form resets and shows a green confirmation for 5 seconds. On error, a red message appears.
 
-If the button animation breaks in the future, check for:
-1. A `:hover { background: X }` override that was added back
-2. A `transform: translateY()` on hover
-3. A `transition:` property on the button element itself that overrides the one in `variables.css`
+The form submit button uses `btn-fill-hover` for animation. It has **no** `:hover` rule in the CSS — all hover behavior comes from `variables.css`.
 
 The `.contact-card` grid collapses from 2-column to 1-column at ≤ 981px. The `.form-row` (first name / last name side by side) collapses at ≤ 640px.
 
@@ -1755,6 +1755,8 @@ Input and textarea placeholder text uses `var(--fs-ph)` (not `--fs-base`).
 ### Contact Page Style 2 (`src/pages/contact/contact_2.astro`)
 
 Styles: `src/styles/pages/contact-page-2.css`
+
+Form submits to **Formspree** (`https://formspree.io/f/mgogpgav`) via `fetch` — same pattern as Contact Style 1. The same validation, loading state, and success/error messaging applies.
 
 Two-column layout with tabbed info panel on the right and a form on the left (`.c2-grid: 1fr 2fr`). Collapses to single column at ≤ 980px.
 
@@ -1775,6 +1777,74 @@ The Read More button must include `btn-fill-hover`:
 ```
 
 The `category` variable from `Astro.params` on line 26 is declared but unused (slug filtering uses `categoryName` from `Astro.props` instead). This is a lint warning only — it doesn't affect functionality.
+
+---
+
+## Form Integrations
+
+All four contact forms on the site are wired to **Formspree** and submit via `fetch` — no page redirect, full client-side validation before submission.
+
+### Formspree Endpoint
+
+```
+https://formspree.io/f/mgogpgav
+```
+
+To replace with a different endpoint, update the `action` attribute on each form below.
+
+### Forms Connected
+
+| Form | File | Form ID |
+|---|---|---|
+| Home — Contact CTA | `src/components/home/ContactCTA.astro` | `home-contact-form` |
+| Contact Style 1 | `src/pages/contact/contact_1.astro` | `c1-form` |
+| Contact Style 2 | `src/pages/contact/contact_2.astro` | `c2-form` |
+| Attorney Profile | `src/pages/attorney-profile.astro` | `atty-form` |
+
+### Submission Flow (all four forms)
+
+1. User fills in the form and clicks submit
+2. Client-side validation runs — invalid fields show inline error messages
+3. If all fields pass: button disables and shows "Sending…"
+4. `fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })` fires
+5. **Success (200):** form resets, green "Thank you!" message shows for 5 seconds
+6. **Server error:** red "Something went wrong. Please try again." message
+7. **Network error:** red "Network error. Please try again." message
+8. Button re-enables in all cases via `finally`
+
+### Validated Fields
+
+| Field | Rule |
+|---|---|
+| Name | min 2 characters |
+| Phone | digits/spaces/dashes/plus/brackets, min 7 chars |
+| Email | standard email format |
+| Service | must select a non-empty option |
+| Message | min 10 characters |
+
+### Receiving Submissions
+
+Log in to [formspree.io](https://formspree.io) → your form `mgogpgav` → **Submissions** to see all entries.
+
+To receive email notifications: **Settings → Notifications → Add email**.
+
+### Changing the Formspree Endpoint
+
+Update the `action` attribute on all four forms:
+
+```html
+<!-- was -->
+action="https://formspree.io/f/mgogpgav"
+
+<!-- replace with your new endpoint -->
+action="https://formspree.io/f/YOUR_NEW_ID"
+```
+
+Files to update:
+- `src/components/home/ContactCTA.astro`
+- `src/pages/contact/contact_1.astro`
+- `src/pages/contact/contact_2.astro`
+- `src/pages/attorney-profile.astro`
 
 ---
 
@@ -1905,7 +1975,7 @@ SOME_SECRET_KEY=xxxx
 | 10 | Update case studies | `src/data/caseStudies.ts` |
 | 11 | Update testimonials | `src/data/testimonials.ts` |
 | 12 | Update FAQs | `src/data/faqs.ts` |
-| 13 | Set real contact form action | `src/components/home/ContactCTA.astro` |
+| 13 | Update Formspree endpoint if needed | All 4 form `action` attributes — see [Form Integrations](#form-integrations) |
 | 14 | Add Google Analytics / Tag Manager | `src/layouts/MainLayout.astro` → `<head>` |
 | 15 | Verify sitemap | Visit `/sitemap-index.xml` after deploy |
 | 16 | Verify RSS feed | Visit `/rss.xml` after deploy |

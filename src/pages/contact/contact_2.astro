@@ -58,12 +58,10 @@ const locations = [
         <form
           class="c2-form"
           id="c2-form"
-          name="contact-2"
+          action="https://formspree.io/f/mgogpgav"
           method="POST"
-          data-netlify="true"
           novalidate
         >
-          <input type="hidden" name="form-name" value="contact-2" />
           <div class="field-wrap">
             <input type="text" name="name" placeholder="Name" />
             <span class="field-error"></span>
@@ -209,10 +207,10 @@ const locations = [
         btn.disabled = true;
         btn.textContent = "Sending…";
 
-        fetch("/", {
+        fetch(c2Form.action, {
           method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams(new FormData(c2Form) as any).toString(),
+          body: new FormData(c2Form),
+          headers: { Accept: "application/json" },
         })
           .then((res) => {
             if (res.ok) {

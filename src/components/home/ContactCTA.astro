@@ -23,7 +23,13 @@ import imgContact from "../../assets/839873.jpg";
         </div>
       </div>
 
-      <form class="hcta-form" id="home-contact-form" novalidate>
+      <form
+        class="hcta-form"
+        id="home-contact-form"
+        action="https://formspree.io/f/mgogpgav"
+        method="POST"
+        novalidate
+      >
         <div class="hcta-row">
           <div class="field-wrap">
             <input type="text" name="name" placeholder="Name" />
@@ -111,9 +117,37 @@ import imgContact from "../../assets/839873.jpg";
       }
       if (valid) {
         const success = homeForm.querySelector<HTMLElement>(".form-success")!;
-        homeForm.reset();
-        success.style.display = "block";
-        setTimeout(() => { success.style.display = "none"; }, 5000);
+        const btn = homeForm.querySelector<HTMLButtonElement>("button[type='submit']")!;
+        btn.disabled = true;
+        btn.textContent = "Sending…";
+
+        fetch(homeForm.action, {
+          method: "POST",
+          body: new FormData(homeForm),
+          headers: { Accept: "application/json" },
+        })
+          .then((res) => {
+            if (res.ok) {
+              homeForm.reset();
+              success.style.color = "#22c55e";
+              success.textContent = "Thank you! We'll be in touch shortly.";
+              success.style.display = "block";
+              setTimeout(() => { success.style.display = "none"; }, 5000);
+            } else {
+              success.style.color = "#ef4444";
+              success.textContent = "Something went wrong. Please try again.";
+              success.style.display = "block";
+            }
+          })
+          .catch(() => {
+            success.style.color = "#ef4444";
+            success.textContent = "Network error. Please try again.";
+            success.style.display = "block";
+          })
+          .finally(() => {
+            btn.disabled = false;
+            btn.innerHTML = "Book Appointment";
+          });
       }
     });
   }
