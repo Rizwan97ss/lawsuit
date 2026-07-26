@@ -176,11 +176,37 @@ const services = [
 
       if (ok) {
         const success = form.querySelector<HTMLElement>(".form-success")!;
-        form.reset();
-        success.style.display = "block";
-        setTimeout(() => {
-          success.style.display = "none";
-        }, 5000);
+        const btn = form.querySelector<HTMLButtonElement>("button[type='submit']")!;
+        btn.disabled = true;
+        btn.textContent = "Sending…";
+
+        fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" },
+        })
+          .then((res) => {
+            if (res.ok) {
+              form.reset();
+              success.style.display = "block";
+              setTimeout(() => {
+                success.style.display = "none";
+              }, 5000);
+            } else {
+              success.style.color = "#ef4444";
+              success.textContent = "Something went wrong. Please try again.";
+              success.style.display = "block";
+            }
+          })
+          .catch(() => {
+            success.style.color = "#ef4444";
+            success.textContent = "Network error. Please try again.";
+            success.style.display = "block";
+          })
+          .finally(() => {
+            btn.disabled = false;
+            btn.innerHTML = "Book Appointment";
+          });
       }
     });
   }
